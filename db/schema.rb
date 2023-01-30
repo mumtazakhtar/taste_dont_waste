@@ -10,9 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_30_145639) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_163253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cookbooks", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_cookbooks_on_recipe_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "product"
+    t.date "bestByDate"
+    t.integer "stock"
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_items_on_users_id"
+  end
+
+  create_table "my_recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "ingredients"
+    t.string "description"
+    t.integer "cookingTime"
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_my_recipes_on_users_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "ingedients"
+    t.string "description"
+    t.integer "cookingTime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +59,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_145639) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.bigint "cookbook_id"
+    t.index ["cookbook_id"], name: "index_users_on_cookbook_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cookbooks", "recipes"
+  add_foreign_key "items", "users", column: "users_id"
+  add_foreign_key "my_recipes", "users", column: "users_id"
 end
