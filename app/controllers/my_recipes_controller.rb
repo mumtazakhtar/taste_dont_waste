@@ -1,8 +1,10 @@
 class MyRecipesController < ApplicationController
-  skip_after_action :verify_authorized
+  # skip_after_action :verify_authorized
   before_action :set_recipe_id, only: %i[show edit update destroy]
+  before_action :authorize_my_recipe
 
   def index
+    @my_recipes = policy_scope(MyRecipe)
     @my_recipes = MyRecipe.all
   end
 
@@ -38,8 +40,6 @@ class MyRecipesController < ApplicationController
     redirect_to root_path, notice: 'Deleted successfully'
   end
 
-
-
   private
 
   def set_recipe_id
@@ -49,4 +49,9 @@ class MyRecipesController < ApplicationController
   def recipe_params
     params.require(:my_recipe).permit(:title, :ingredients, :cookingTime, :description)
   end
+
+  def authorize_my_recipe
+    authorize @my_recipe
+  end
+
 end
