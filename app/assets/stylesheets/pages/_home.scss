@@ -1,15 +1,17 @@
 // Specific CSS for your home-page
 
 .banner {
+  background-image: url('banner.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  background-position: center;
   padding: 150px 0;
 }
 
 .banner h1 {
   margin: 0;
   font-family: $h1-font;
-  color: $cabbage;
+  color: $logo;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 32px;
   font-weight: bold;
