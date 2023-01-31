@@ -6,6 +6,4 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :my_recipes
-  has_one :cookbook
 end
-

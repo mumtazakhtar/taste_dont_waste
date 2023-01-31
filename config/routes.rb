@@ -5,4 +5,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :recipes, only: %i[index show]
+  resources :items
+  resources :my_recipes
+  get 'cookbook', to: 'pages#cookbook'
 end
