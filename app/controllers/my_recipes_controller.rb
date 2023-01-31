@@ -1,4 +1,6 @@
 class MyRecipesController < ApplicationController
+  skip_after_action :verify_authorized
+  
   def index
     @my_recipes = MyRecipe.all
   end
@@ -32,4 +34,8 @@ class MyRecipesController < ApplicationController
   def recipe_params
     params.require(:my_recipe).permit(:title, :ingredients, :cookingTime, :description)
   end
+=======
+  skip_after_action :verify_authorized
+
+>>>>>>> master
 end
