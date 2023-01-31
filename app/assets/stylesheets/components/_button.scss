@@ -1,7 +1,33 @@
 .btn-call {
+  border: $eggplant;
+  padding: 8px 24px;
+  background-color: $eggplant;
+  color: #fff;
+  border-radius: 25px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
 
+.btn-call:hover {
+  color: $courgette;
+  transition: opacity 0.3s ease;
+  border: 1px solid $courgette;
 }
 
 .btn-nrm {
-  
+  color: $salad;
+  border: 1px solid $salad;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.btn-nrm:hover {
+  color: $courgette;
+  transition: 0.3s ease;
+  border: 1px solid $courgette;
 }
