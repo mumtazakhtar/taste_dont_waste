@@ -9,15 +9,20 @@
 .banner h1 {
   margin: 0;
   font-family: $h1-font;
-  color: white;
+  color: $cabbage;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 32px;
   font-weight: bold;
 }
 
-.banner p {
+.banner h2 {
   font-size: 20px;
-  color: white;
-  opacity: .7;
+  font-family: $h2-font;
+  color: $squash;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.btn-flat {
+  color: $squash;
+  font-family: $body-font;
 }
