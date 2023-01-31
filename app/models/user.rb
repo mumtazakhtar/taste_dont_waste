@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :my_recipes
+
+  acts_as_favoritor
 end
