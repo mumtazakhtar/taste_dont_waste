@@ -1,0 +1,8 @@
+<div class="container">
+  <% @recipes.each do |recipe| %>
+    <div>
+      <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+      <h2><%= recipe.description %></h2>
+    </div>
+  <% end %>
+</div>
