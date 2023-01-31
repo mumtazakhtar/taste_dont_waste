@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authorize_my_item
 
   def index
-    @my_items = policy_scope(Item)
+    @items = policy_scope(Item)
     @items = Item.all
   end
 
@@ -49,5 +49,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:product, :bestByDate, :stock)
   end
-
 end

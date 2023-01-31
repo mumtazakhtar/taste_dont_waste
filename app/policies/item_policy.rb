@@ -1,4 +1,4 @@
-class MyRecipePolicy < ApplicationPolicy
+class ItemPolicy < ApplicationPolicy
   before_action :set_user
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
