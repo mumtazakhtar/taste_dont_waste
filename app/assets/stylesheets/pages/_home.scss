@@ -4,7 +4,8 @@
   background-image: url('banner-courgette.jpg');
   background-image: linear-gradient rgba(0.5,0,0,0);
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  //background-attachment: fixed;
+  object-fit: cover;
   background-size: cover;
   padding: 150px 0;
 }
