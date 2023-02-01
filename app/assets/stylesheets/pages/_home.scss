@@ -1,1 +1,50 @@
 // Specific CSS for your home-page
+
+.banner {
+  background-image: url('banner.jpg');
+  background-image: linear-gradient rgba(0.5,0,0,0);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 0;
+  font-family: $h1-font;
+  color: $salad;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.banner h2 {
+  font-size: 20px;
+  font-family: $h2-font;
+  color: $squash;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  padding-bottom: 10px;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+  max-width: 600px;
+  border-radius: 50px;
+}
+
+.form-control {
+  background-color: rgb(255, 253, 224);
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: $eggplant;
+}
