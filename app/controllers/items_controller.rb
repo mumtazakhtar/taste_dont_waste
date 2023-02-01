@@ -1,14 +1,11 @@
 class ItemsController < ApplicationController
-  before_action :authorize_my_item
+  before_action :authorize_my_item, except: :index
 
   def index
     @my_items = policy_scope(Item)
   end
 
   def create
-  end
-
-  def show
   end
 
   def edit

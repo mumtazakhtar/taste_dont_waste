@@ -1,5 +1,5 @@
 class ItemPolicy < ApplicationPolicy
-  before_action :set_user
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -8,9 +8,20 @@ class ItemPolicy < ApplicationPolicy
     end
   end
 
-  private
-
-  def set_user
+  def index?
     record.user == user
   end
+
+  def create?
+    record.user == user
+  end
+
+  def update?
+    record.user == user
+  end
+
+  def destroy
+    record.user == user
+  end
+
 end
