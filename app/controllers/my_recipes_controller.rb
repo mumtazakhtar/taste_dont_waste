@@ -1,6 +1,6 @@
 class MyRecipesController < ApplicationController
   # skip_after_action :verify_authorized
-  before_action :authorize_my_recipe, except: :index
+  # after_action :authorize_my_recipe, except: %i[index]
   before_action :set_recipe_id, only: %i[show edit update destroy]
 
   def index
@@ -9,14 +9,18 @@ class MyRecipesController < ApplicationController
   end
 
   def show
+    authorize @my_recipe
   end
 
   def new
     @my_recipe = MyRecipe.new
+    authorize @my_recipe
   end
 
   def create
     @my_recipe = MyRecipe.new(recipe_params)
+    @my_recipe.user = current_user
+    authorize @my_recipe
     if @my_recipe.save
       redirect_to root_path, notice: 'Created a new recipe in your cookbook'
     else
@@ -25,9 +29,11 @@ class MyRecipesController < ApplicationController
   end
 
   def edit
+    authorize @my_recipe
   end
 
   def update
+    authorize @my_recipe
     if @my_recipe.update(recipe_params)
       redirect_to root_path, notice: 'Updated succesfully'
     else
@@ -36,23 +42,19 @@ class MyRecipesController < ApplicationController
   end
 
   def destroy
+    authorize @my_recipe
     @my_recipe.destroy
     redirect_to root_path, notice: 'Deleted successfully'
   end
 
   private
 
-  def authorize_my_recipe
-    authorize @my_recipe
-  end
-
   def set_recipe_id
     @horse = Horse.find(params[:id])
   end
 
   def recipe_params
-    params.require(:my_recipe).permit(:title, :ingredients, :cookingTime, :description)
+    params.require(:my_recipe).permit(:title, :ingredients, :cookingTime, :description, :photo)
   end
-
 
 end
