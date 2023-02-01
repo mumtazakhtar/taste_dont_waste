@@ -2,7 +2,7 @@
   <h1>My Recipes</h1>
   <BR><BR>
 
-  <%= @my_recipes.each do |recipe| %>
+  <% @my_recipes.each do |recipe| %>
     <%= cl_image_tag(recipe.photo.key,
       width: 300, height: 200, crop: :fill) %>
     <h2><%= link_to recipe.title, my_recipe_path(recipe) %></h2>
@@ -11,5 +11,8 @@
     <p><strong>Description:</strong><BR>
     <%= recipe.description %><BR></p>
   <% end %>
+
+<%= link_to "Add new recipe", new_my_recipe_path, class:"btn btn-dark" %>
+<%= link_to "Back to homepage", root_path, class:"btn btn-dark" %>
 
 </div>

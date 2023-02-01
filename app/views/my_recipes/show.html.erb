@@ -1,5 +1,25 @@
+<% if @my_recipe.photo.attached? %>
+  <div class="banner" style="background-image: linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.4)), url(<%= cl_image_path @my_recipe.photo.key %>);">
+    <div class="container">
+      <h1><%= @my_recipe.title %></h1>
+      <p><strong>Cooking time:</strong><%= @my_recipe.cookingTime %><BR>
+      <strong>Number of ingrdients:</strong> Array ingredients? </p>
+    </div>
+  </div>
+<% end %>
+
 <div class="container">
-  <h1><%= @my_recipe.title %></h1>
-  <p> <%= @my_recipe.description %></p>
+  <h2>How to make <%= @my_recipe.title %></h2>
+
+  <p><strong>Ingredients:</strong> <%= @my_recipe.ingredients %><BR>
+  <strong>Cooking Time:</strong> <%= @my_recipe.cookingTime %> minutes</p>
+
+  <p><strong>Description:</strong> <BR>
+  <%= @my_recipe.description %></p>
+
+<%= link_to "Edit this recipe", root_path, class:"btn btn-dark" %>
+<%= link_to "Back to all your recipes", my_recipes_path, class:"btn btn-dark" %>
+
+
 
 </div>
