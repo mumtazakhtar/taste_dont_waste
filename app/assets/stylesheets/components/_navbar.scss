@@ -1,6 +1,15 @@
+.sticky {
+  position: -webkit-sticky;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .navbar-tdw {
   justify-content: space-between;
   background: $light-gray;
+  overflow: visible;
 }
 
 .navbar-tdw .navbar-collapse {
@@ -10,4 +19,18 @@
 .navbar-tdw .navbar-brand img {
   width: 50px;
   border-radius: 50%;
+}
+
+
+.container-logo {
+  display: flex;
+  h3{
+    margin-top: 10px;
+  }
+}
+
+.name-card {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 16px;
 }
