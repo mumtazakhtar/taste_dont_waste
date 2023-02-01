@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
+    # @recipes = policy_scope(M
   end
 
   def show
