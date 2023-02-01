@@ -1,8 +1,29 @@
-<div class="container">
+<%# <div class="container">
   <% @recipes.each do |recipe| %>
-    <div>
-      <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
-      <h2><%= recipe.description %></h2>
-    </div>
+    <%#<div>
+      <h2><%= link_to recipe.title, recipe_path(recipe)</h2> %>
+      <%# <h2><%= recipe.description</h2> %>
+    <%#</div>
   <% end %>
+<%# </div> %>
+
+
+
+
+<div class="container-index">
+  <div class="search-col">
+  </div>
+  <div class="card-recipe">
+      <div class="card-img">
+      <%# <% if horse.photo.key %>
+      <%# <%= link_to cl_image_tag(horse.photo.key), horse_path(horse), height: 300, width: 400, crop: :fill %>
+      <%# <% end %>
+      <img src="banner-bread.jpg">
+      </div>
+    <div class="card-recipe-infos">
+      <h2>name</h2>
+      <p>cooking time</p>
+      <p>recipe</p>
+    </div>
+  </div>
 </div>

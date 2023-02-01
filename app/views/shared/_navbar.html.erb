@@ -12,12 +12,11 @@
       <div class="name-card">
         <%= link_to "Go to your cookbook", "#", class: "btn-call" %>
         <% if current_user %>
-          <p>Hello  <%= current_user.first_name.capitalize %>!</p>
+          <%# <p>Hello  <%= current_user.name.capitalize !</p>%>
         <% end %>
       </div>
       <ul class="navbar-nav me-auto">
           <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user %>
