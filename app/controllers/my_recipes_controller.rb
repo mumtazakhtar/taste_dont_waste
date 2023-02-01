@@ -22,7 +22,7 @@ class MyRecipesController < ApplicationController
     @my_recipe.user = current_user
     authorize @my_recipe
     if @my_recipe.save
-      redirect_to my_recipe_path, notice: 'Created a new recipe in your cookbook'
+      redirect_to my_recipe_path(@my_recipe), notice: 'Created a new recipe in your cookbook'
     else
       render :new, status: :unprocessable_entity
     end

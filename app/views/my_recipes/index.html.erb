@@ -10,9 +10,14 @@
     <strong>Cooking Time:</strong> <%= recipe.cookingTime %> minutes<BR></p>
     <p><strong>Description:</strong><BR>
     <%= recipe.description %><BR></p>
+    <%= link_to "Edit Recipe", edit_my_recipe_path(recipe), class:"btn btn-dark" %>
+    <%= link_to 'Delete', my_recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?"}, class:"btn btn-dark" %>
+  <HR>
   <% end %>
 
-<%= link_to "Add new recipe", new_my_recipe_path, class:"btn btn-dark" %>
-<%= link_to "Back to homepage", root_path, class:"btn btn-dark" %>
+  <BR><BR>
+  <%= link_to "Add new recipe", new_my_recipe_path, class:"btn btn-dark" %>
+  <%= link_to "Check inventory", items_path, class:"btn btn-dark" %>
+  <%= link_to "Back to homepage", root_path, class:"btn btn-dark" %>
 
 </div>
