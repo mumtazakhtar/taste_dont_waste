@@ -22,7 +22,7 @@ class MyRecipesController < ApplicationController
     @my_recipe.user = current_user
     authorize @my_recipe
     if @my_recipe.save
-      redirect_to root_path, notice: 'Created a new recipe in your cookbook'
+      redirect_to my_recipe_path, notice: 'Created a new recipe in your cookbook'
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class MyRecipesController < ApplicationController
   def update
     authorize @my_recipe
     if @my_recipe.update(recipe_params)
-      redirect_to root_path, notice: 'Updated succesfully'
+      redirect_to my_recipe_path, notice: 'Updated succesfully'
     else
       render :edit, status: unprocessable_entity
     end
@@ -50,7 +50,7 @@ class MyRecipesController < ApplicationController
   private
 
   def set_recipe_id
-    @horse = Horse.find(params[:id])
+    @my_recipe = MyRecipe.find(params[:id])
   end
 
   def recipe_params

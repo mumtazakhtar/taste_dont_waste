@@ -1,7 +1,15 @@
 <div class="container">
+  <h1>My Recipes</h1>
+  <BR><BR>
+
   <%= @my_recipes.each do |recipe| %>
+    <%= cl_image_tag(recipe.photo.key,
+      width: 300, height: 200, crop: :fill) %>
     <h2><%= link_to recipe.title, my_recipe_path(recipe) %></h2>
-    <h2><%= recipe.ingredients %></h2>
-    <p><%= recipe.description %></p>
+    <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+    <strong>Cooking Time:</strong> <%= recipe.cookingTime %> minutes<BR></p>
+    <p><strong>Description:</strong><BR>
+    <%= recipe.description %><BR></p>
   <% end %>
+
 </div>
