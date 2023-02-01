@@ -24,7 +24,7 @@ class MyRecipePolicy < ApplicationPolicy
     record.user == user
   end
 
-  def destroy
+  def destroy?
     record.user == user
   end
 
