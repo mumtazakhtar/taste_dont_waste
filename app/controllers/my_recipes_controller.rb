@@ -1,11 +1,11 @@
 class MyRecipesController < ApplicationController
   # skip_after_action :verify_authorized
+  before_action :authorize_my_recipe, except: :index
   before_action :set_recipe_id, only: %i[show edit update destroy]
-  before_action :authorize_my_recipe
 
   def index
-    @my_recipes = policy_scope(MyRecipe)
     @my_recipes = MyRecipe.all
+    @my_recipes = policy_scope(MyRecipe)
   end
 
   def show
@@ -42,6 +42,10 @@ class MyRecipesController < ApplicationController
 
   private
 
+  def authorize_my_recipe
+    authorize @my_recipe
+  end
+
   def set_recipe_id
     @horse = Horse.find(params[:id])
   end
@@ -50,8 +54,5 @@ class MyRecipesController < ApplicationController
     params.require(:my_recipe).permit(:title, :ingredients, :cookingTime, :description)
   end
 
-  def authorize_my_recipe
-    authorize @my_recipe
-  end
 
 end

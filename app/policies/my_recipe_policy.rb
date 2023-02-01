@@ -1,16 +1,31 @@
 class MyRecipePolicy < ApplicationPolicy
-  before_action :set_user
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      # scope.all
+      # This makes sure the user only sees their own recipes, not all my recipes
       scope.where(user: user)
     end
   end
 
-  private
-
-  def set_user
+  def index?
     record.user == user
   end
+
+  def show?
+    record.user == user
+  end
+
+  def create?
+    record.user == user
+  end
+
+  def update?
+    record.user == user
+  end
+
+  def destroy
+    record.user == user
+  end
+
 end
