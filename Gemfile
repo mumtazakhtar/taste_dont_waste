@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Cloudinary for image upload
+gem "cloudinary"
 
 # Pundit for authorization
 gem "pundit"
