@@ -17,8 +17,4 @@ class RecipesController < ApplicationController
     current_user.unfavorite(@recipe)
   end
 
-  def all_favorited
-    current_user.all_favorited
-  end
-
 end
