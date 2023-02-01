@@ -1,17 +1,17 @@
 .btn-call {
-  border: $eggplant;
+  border: 1px solid $eggplant;
   padding: 8px 24px;
   background-color: $eggplant;
   color: #fff;
   border-radius: 25px;
   text-decoration: none;
-  margin-bottom: 8px;
 }
 
 .btn-call:hover {
-  color: $courgette;
+  background-color: $logo;
   transition: opacity 0.3s ease;
-  border: 1px solid $courgette;
+  border: 1px solid $logo;
+  color: #fff;
 }
 
 .btn-nrm {
