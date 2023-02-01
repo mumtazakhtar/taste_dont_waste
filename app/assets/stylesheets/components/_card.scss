@@ -1,32 +1,50 @@
-.card-recipe {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
 
-.card-recipe > img {
-  height: 200px;
-  width: 100%;
+  .card-recipe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-grow: 1;
+    padding: 14px;
+    column-gap: 10px;
+    row-gap: 15px;
+  }
+
+.card-recipe img {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   object-fit: cover;
-}
-
-.card-recipe h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.card-recipe p {
-  font-size: 12px;
-  opacity: .7;
-  margin: 0;
+  height: 50vh;
+  width: 100%;
 }
 
 
-.card-recipe .card-recipe-infos {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
+
+
+.card-horse {
+  width: 400px;
+}
+
+.card-horse .card-horse-infos {
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 10px;
+  //justify-content: space-around;
+  font-size: 20px;
+  color: white;
+  font-weight: bolder;
+}
+
+.info {
+  font-size: 11px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-right: 10px;
+  margin-left: 5px;
+  line-height: normal;
 }
