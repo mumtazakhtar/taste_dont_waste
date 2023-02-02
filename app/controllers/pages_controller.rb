@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def cookbook
-    @cookbook_recipes = user.all_favorited + user.my_recipes
+    @cookbook_recipes = current_user.all_favorited + current_user.my_recipes
   end
 
 end
