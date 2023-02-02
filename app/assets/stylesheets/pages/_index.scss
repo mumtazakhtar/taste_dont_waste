@@ -2,7 +2,7 @@
 @import "home";
 
 body {
-  margin-top: 5vw;
+  margin-top: 4vw;
 }
 
 a {
@@ -14,6 +14,11 @@ a:hover {
   color: $courgette;
 }
 
+#filter {
+  color: $eggplant;
+  opacity: 1;
+  text-align: center;
+}
 .container-index {
   display: flex;
 }
@@ -23,6 +28,84 @@ a:hover {
   grid-template-columns: 0.7fr 2.3fr;
   flex-grow: 1;
   padding: 14px;
+  padding-left: 1px;
   column-gap: 10px;
   row-gap: 15px;
+}
+
+
+.search-card {
+  #form {
+    background-color: rgb(213, 225, 213);
+    height: 44px;
+    width: 100%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 10px;
+  }
+
+   #query {
+    all: unset;
+    font: 16px system-ui;
+    color: $squash;
+    height: 100%;
+    padding: 6px 10px;
+    width: 100%;
+  }
+
+  ::placeholder {
+    color: #fff;
+    opacity: 0.7;
+  }
+
+  button {
+    all: unset;
+    cursor: pointer;
+    height: 44px;
+  }
+
+  i {
+    color: #fff;
+    height: 30px;
+    padding-right: 10px;
+    padding-top: 8px;
+  }
+}
+
+.current-search {
+  padding-top: 10px;
+
+  p {
+    color: $eggplant;
+    text-align: center;
+  }
+
+}
+
+.current {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2px;
+  row-gap: 2px;
+
+  .ingr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid $eggplant;
+    border-radius: 50px;
+    padding-left: 10px;
+    justify-items: end;
+  }
+ p {
+  margin: 0px;
+  justify-content: start;
+  }
+
+  i {
+    color: $eggplant;
+    height: 10px;
+    padding-top: 4px;
+  }
 }
