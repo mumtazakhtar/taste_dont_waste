@@ -7,5 +7,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :my_recipes
 
+  validates :name, presence: true
+
   acts_as_favoritor
 end
