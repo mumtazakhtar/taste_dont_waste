@@ -1,6 +1,10 @@
 // Import page-specific CSS files here.
 @import "home";
 
+body {
+  margin-top: 70px;
+}
+
 a {
   color: $eggplant;
   text-decoration: none;
