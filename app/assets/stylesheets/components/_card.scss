@@ -1,21 +1,20 @@
 
-  .card-holder {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex-grow: 1;
-    padding: 14px;
-    column-gap: 10px;
-    row-gap: 15px;
-    overflow-inline: scroll;
-  }
+.card-holder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-grow: 1;
+  padding: 14px;
+  column-gap: 10px;
+  row-gap: 15px;
+  overflow-inline: scroll;
+}
 
-
-  .card-recipe {
-    display: grid;
-    flex-grow: 1;
-    padding: 14px;
-    column-gap: 10px;
-  }
+.card-recipe {
+  display: grid;
+  flex-grow: 1;
+  padding: 14px;
+  column-gap: 10px;
+}
 
 .card-recipe img {
   border-top-left-radius: 4px;
@@ -38,7 +37,7 @@
   padding-left: 10px;
   //justify-content: space-around;
   font-size: 20px;
-  color: white;
+  color: $eggplant;
   font-weight: bolder;
 }
 
