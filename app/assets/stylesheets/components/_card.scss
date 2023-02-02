@@ -1,7 +1,16 @@
 
-  .card-recipe {
+  .card-holder {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    flex-grow: 1;
+    padding: 14px;
+    column-gap: 10px;
+    row-gap: 15px;
+    overflow-inline: scroll;
+  }
+
+  .card-recipe {
+    display: grid;
     flex-grow: 1;
     padding: 14px;
     column-gap: 10px;
