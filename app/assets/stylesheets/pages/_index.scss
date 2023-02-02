@@ -35,24 +35,24 @@ a:hover {
 
 
 .search-card {
-  form {
+  #form {
     background-color: rgb(213, 225, 213);
-    width: 300px;
     height: 44px;
-    border-radius: 5px;
+    width: 100%;
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-right: 10px;
   }
 
-   input {
+   #query {
     all: unset;
     font: 16px system-ui;
-    color: #fff;
+    color: $squash;
     height: 100%;
-    width: 100%;
     padding: 6px 10px;
+    width: 100%;
   }
 
   ::placeholder {
@@ -63,13 +63,49 @@ a:hover {
   button {
     all: unset;
     cursor: pointer;
-    width: 44px;
     height: 44px;
   }
 
-  svg {
+  i {
     color: #fff;
-    fill: currentColor;
-    height: 100px;
+    height: 30px;
+    padding-right: 10px;
+    padding-top: 8px;
+  }
+}
+
+.current-search {
+  padding-top: 10px;
+
+  p {
+    color: $eggplant;
+    text-align: center;
+  }
+
+}
+
+.current {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2px;
+  row-gap: 2px;
+
+  .ingr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid $eggplant;
+    border-radius: 50px;
+    padding-left: 10px;
+    justify-items: end;
+  }
+ p {
+  margin: 0px;
+  justify-content: start;
+  }
+
+  i {
+    color: $eggplant;
+    height: 10px;
+    padding-top: 4px;
   }
 }
