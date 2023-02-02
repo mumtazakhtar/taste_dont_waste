@@ -1,0 +1,6 @@
+var recipeId = '<%= @recipe.id%>'
+function toggleLikeButton(recipeId, innerHTML) {
+  let likeButton = document.querySelector(`.like-icon[data-id='${recipeId}']`)
+  likeButton.classList.toggle('red');
+}
+toggleLikeButton(recipeId);

@@ -9,6 +9,19 @@
           <div class="card-recipe">
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
 
+            <% if current_user.favorited?(recipe) %>
+              <%= link_to favorite_recipe_path(recipe), method: :post do %>
+                <i class="fa-solid fa-heart card-recipe-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
+              <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
+                <i class="fa-regular fa-heart card-recipe-heart"></i>
+             <% end %>
+            <% end %>
+
+
+            <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
             <i class="fa-regular fa-heart card-recipe-heart"></i>
               <div class="card-recipe-infos pt-2 px-3">
                 <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
