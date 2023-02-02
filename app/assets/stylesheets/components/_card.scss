@@ -26,6 +26,13 @@
   flex-grow: 1;
   padding: 14px;
   column-gap: 10px;
+  position: relative;
+}
+
+.card-recipe .card-recipe-heart {
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
 .card-recipe img {
@@ -48,9 +55,17 @@
   //grid-template-columns: 1fr 1fr;
   padding-left: 10px;
   //justify-content: space-around;
-  font-size: 20px;
-  color: $eggplant;
-  font-weight: bolder;
+
+  h2 {
+    font-size: 22px;
+    color: $eggplant;
+    font-weight: bolder;
+  }
+
+  p {
+    font-size: 14px;
+    color: black;
+  }
 }
 
 // .info {
@@ -70,5 +85,4 @@
   .search-card {
     width: 25vw;
   }
-
 }
