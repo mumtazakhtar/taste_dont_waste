@@ -5,8 +5,17 @@
     <h2>Search an item below to start!</h2>
 
     <div class="form-group has-search">
-    <span class="fa fa-search form-control-feedback"></span>
-    <input type="text" class="form-control" placeholder="Search">
+      <span class="fa fa-search form-control-feedback"></span>
+        <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Enter your ingredients to find a recipe"
+          %>
+          <%= submit_tag "Search", class: "btn btn-call mx-1" %>
+        <% end %>
     </div>
+
+
   </div>
 </div>
