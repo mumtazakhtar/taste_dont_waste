@@ -2,38 +2,6 @@
 <div class="container-index">
   <div class="index-layout">
     <div class="search-card">
-      <h1>Recipes</h1>
-    </div>
-
-    <div class="card-holder">
-        <% @recipes.each do |recipe| %>
-          <div class="card-recipe">
-            <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-
-            <% if current_user.favorited?(recipe) %>
-              <%= link_to favorite_recipe_path(recipe), method: :post do %>
-                <i class="fa-solid fa-heart card-recipe-heart"></i>
-              <% end %>
-            <% else %>
-              <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
-              <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
-                <i class="fa-regular fa-heart card-recipe-heart"></i>
-             <% end %>
-            <% end %>
-
-
-            <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
-            <i class="fa-regular fa-heart card-recipe-heart"></i>
-              <div class="card-recipe-infos pt-2 px-3">
-                <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
-                <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
-                <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
-                <strong>Description:</strong> <%= recipe.description %><BR></p>
-              </div>
-          </div>
-        <% end %>
-
- <div class="search-card">
       <p id="filter">filter search results</p>
       <form id="form" role="search">
         <input type="search" id="query" name="q" placeholder="Add more ingredients"
@@ -70,3 +38,34 @@
       <p>one</p>
       <p>one</p>
     </div>
+
+    <div class="card-holder">
+        <% @recipes.each do |recipe| %>
+          <div class="card-recipe">
+            <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
+
+            <% if current_user.favorited?(recipe) %>
+              <%= link_to favorite_recipe_path(recipe), method: :post do %>
+                <i class="fa-solid fa-heart card-recipe-heart"></i>
+              <% end %>
+            <% else %>
+              <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
+              <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
+                <i class="fa-regular fa-heart card-recipe-heart"></i>
+             <% end %>
+            <% end %>
+
+
+            <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
+            <i class="fa-regular fa-heart card-recipe-heart"></i>
+              <div class="card-recipe-infos pt-2 px-3">
+                <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
+                <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+                <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
+                <strong>Description:</strong> <%= recipe.description %><BR></p>
+              </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
