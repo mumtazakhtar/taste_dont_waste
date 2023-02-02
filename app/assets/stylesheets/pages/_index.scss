@@ -1,6 +1,10 @@
 // Import page-specific CSS files here.
 @import "home";
 
+body {
+  margin-top: 5vw;
+}
+
 a {
   color: $eggplant;
   text-decoration: none;
@@ -16,7 +20,7 @@ a:hover {
 
 .index-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0.7fr 2.3fr;
   flex-grow: 1;
   padding: 14px;
   column-gap: 10px;
