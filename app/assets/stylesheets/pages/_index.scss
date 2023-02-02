@@ -9,3 +9,16 @@ a {
 a:hover {
   color: $courgette;
 }
+
+.container-index {
+  display: flex;
+}
+
+.index-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  flex-grow: 1;
+  padding: 14px;
+  column-gap: 10px;
+  row-gap: 15px;
+}
