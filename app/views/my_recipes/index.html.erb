@@ -1,8 +1,24 @@
 
 <div class="container">
-  <%= @my_recipes.each do |recipe| %>
-    <h2><%= link_to recipe.title, my_recipe_path(recipe)%> </h2>
-    <h2><%= recipe.ingredients %></h2>
-    <p><%= recipe.description %></p>
+  <h1>My Recipes</h1>
+  <BR><BR>
+
+  <% @my_recipes.each do |recipe| %>
+    <%= cl_image_tag(recipe.photo.key,
+      width: 300, height: 200, crop: :fill) %>
+    <h2><%= link_to recipe.title, my_recipe_path(recipe) %></h2>
+    <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+    <strong>Cooking Time:</strong> <%= recipe.cookingTime %> minutes<BR></p>
+    <p><strong>Description:</strong><BR>
+    <%= recipe.description %><BR></p>
+    <%= link_to "Edit Recipe", edit_my_recipe_path(recipe), class:"btn btn-dark" %>
+    <%= link_to 'Delete', my_recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?"}, class:"btn btn-dark" %>
+  <HR>
   <% end %>
-</div> 
+
+  <BR><BR>
+  <%= link_to "Add new recipe", new_my_recipe_path, class:"btn btn-dark" %>
+  <%= link_to "Check inventory", items_path, class:"btn btn-dark" %>
+  <%= link_to "Back to homepage", root_path, class:"btn btn-dark" %>
+
+</div>

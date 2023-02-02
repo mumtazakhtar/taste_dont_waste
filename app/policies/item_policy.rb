@@ -13,14 +13,14 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user == user
+    true
   end
 
   def update?
     record.user == user
   end
 
-  def destroy
+  def destroy?
     record.user == user
   end
 

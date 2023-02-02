@@ -7,12 +7,12 @@
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  	</button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="name-card">
-        <%= link_to "Go to your cookbook", "#", class: "btn-call" %>
-        <% if current_user %>
-          <%# <p>Hello  <%= current_user.name.capitalize !</p>%>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="name-card">
+    <%= link_to "Go to your cookbook", "#", class: "btn-call" %>
+      <% if current_user %>
+        <p>Hello  <%= current_user.name %>!</p>
         <% end %>
       </div>
       <ul class="navbar-nav me-auto">
@@ -25,8 +25,8 @@
                 <%= link_to "Dashboard", "#", class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" %>
               </div>
-          <% elsif !current_user %>
-            <%= image_tag "cheeseburger", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% elsif !current_user %>
+              <%= image_tag "cheeseburger.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Signup", new_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
