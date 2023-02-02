@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# PG Search for searching recipes
+gem "pg_search"
+
 # Cloudinary for image upload
 gem "cloudinary"
 
