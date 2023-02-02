@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 
 # Define your Spoonacular API key
-api_key = "d8eacd8b06424ccdb8ce3f3ecb9fb5a2"
+api_key = "dc60d2f7b1d84e3d8d9e75b0bd45815b"
 
 puts "Start creating recipes..."
 recipe_ids = []
