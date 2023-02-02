@@ -1,6 +1,6 @@
-<%= simple_form_for [@item] do |f| %>
+<%= simple_form_for @item do |f| %>
   <%= f.input :product %>
   <%= f.input :bestByDate %>
   <%= f.input :stock %>
-  <%= f.submit(class: "btn btn-dark")%>
+  <%= f.submit(class: "btn-call")%>
 <% end %>

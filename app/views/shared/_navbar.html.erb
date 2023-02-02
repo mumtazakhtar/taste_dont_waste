@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-tdw sticky">
   <div class="container-fluid">
     <div class="container-logo">
-      <%= link_to "#", class: "navbar-brand" do %>
+      <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "logo-2.png", height: 50 %>
       <% end %>
     </div>
@@ -12,24 +12,25 @@
   <div class="name-card">
     <%= link_to "Go to your cookbook", "#", class: "btn-call" %>
       <% if current_user %>
-        <p>Hello  <%= current_user.name %>!</p>
+        <p>Hello <%= current_user.name %>!</p>
         <% end %>
       </div>
       <ul class="navbar-nav me-auto">
           <li class="nav-item active">
+          <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user %>
               <%= image_tag "cheeseburger.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Dashboard", "#", class: "dropdown-item" %>
+                <%= link_to "My cookbook", "#", class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" %>
               </div>
             <% elsif !current_user %>
               <%= image_tag "cheeseburger.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Signup", new_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
+                <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
               </div>
             <% end %>
           </li>
