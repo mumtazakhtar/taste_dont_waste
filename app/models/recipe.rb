@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
   # Now we search by title ingredients description cookingtime
   # Can be less or more later in the process
   pg_search_scope :search_by_everything,
-                  against: %i[title ingredients description cookingTime],
+                  against: %i[ingredients],
                   using: {
                     tsearch:
                     { prefix: true }
