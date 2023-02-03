@@ -52,14 +52,14 @@ a:hover {
    #query {
     all: unset;
     font: 16px system-ui;
-    color: $squash;
+    color: $courgette;
     height: 100%;
-    padding: 6px 10px;
+    padding: 6px 15px;
     width: 100%;
   }
 
   ::placeholder {
-    color: $squash;
+    color: $courgette;
 
   }
 
@@ -70,7 +70,7 @@ a:hover {
   }
 
   i {
-    color: $squash;
+    color: $courgette;
     height: 30px;
     padding-right: 10px;
     padding-top: 8px;
