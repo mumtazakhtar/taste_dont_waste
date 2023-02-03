@@ -26,13 +26,13 @@
   flex-grow: 1;
   padding: 14px;
   column-gap: 10px;
-  position: relative;
+  // position: relative;
 }
 
 .card-recipe .card-recipe-heart {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 8px;
+  right: 16px;
   border: 0px;
   font-size: 20px;
 }
@@ -57,16 +57,21 @@
   //grid-template-columns: 1fr 1fr;
   padding-left: 10px;
   //justify-content: space-around;
+  display: inline-block;
+  position: relative;
+  line-height: 1;
 
   h2 {
     font-size: 22px;
     color: $eggplant;
     font-weight: bolder;
+    font-family: $h2-font;
   }
 
   p {
     font-size: 14px;
     color: black;
+    line-height: normal;
   }
 }
 
