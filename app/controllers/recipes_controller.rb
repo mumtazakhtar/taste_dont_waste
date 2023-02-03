@@ -23,16 +23,12 @@ class RecipesController < ApplicationController
   def favorite
     @recipe = Recipe.find(params[:id])
     current_user.favorite(@recipe)
-    redirect_back(fallback_location: root_path)
-    # flash[:success] = "Post created successfully."
-    # redirect_to recipe_path(@recipe), notice: "Recipe was saved to your cookbook."
+    redirect_back_or_to 'fallback_location: root_path', alert: "Saved #{@recipe.title} recipe to your cookbook."
   end
 
   def unfavorite
     @recipe = Recipe.find(params[:id])
     current_user.unfavorite(@recipe)
-    # flash[:success] = "Post created successfully."
-    redirect_back(fallback_location: root_path)
-    # redirect_to recipe_path(@recipe), notice: "Recipe was unfavorited."
+    redirect_back_or_to 'fallback_location: root_path', alert: "Removed #{@recipe.title} recipe from your cookbook."
   end
 end

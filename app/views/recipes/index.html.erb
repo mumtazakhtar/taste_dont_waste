@@ -51,13 +51,13 @@
               <% if current_user.favorited?(recipe) %>
                 <div class="card-recipe-heart">
                   <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart fa-2xl"></i>
                   <% end %>
                 </div>
               <% else %>
                 <div class="card-recipe-heart">
                   <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart fa-2xl"></i>
                   <% end %>
                 </div>
               <% end %>
@@ -65,7 +65,7 @@
             <% else %>
                 <div class="card-recipe-heart">
                   <%= link_to new_user_registration_path do %>
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart fa-2xl"></i>
                   <% end %>
                 </div>
             <% end %>
