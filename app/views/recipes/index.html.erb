@@ -61,7 +61,7 @@
           <% end %>
 
               <div class="card-recipe-infos pt-2 px-3">
-                <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i></h2>
+                <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                 <% if user_signed_in? %>
                    <% if current_user.favorited?(recipe) %>

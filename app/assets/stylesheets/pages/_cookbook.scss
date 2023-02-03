@@ -3,3 +3,16 @@
   margin: 34px;
 }
 
+.index-layout-cookbook {
+  display: grid;
+  grid-template-columns: 2.3fr 0.7fr;
+  flex-grow: 1;
+  padding: 14px;
+  padding-left: 1px;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+
+.inventory {
+  margin: 34px;
+}
