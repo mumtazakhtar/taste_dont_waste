@@ -8,11 +8,10 @@ class RecipesController < ApplicationController
   end
 
   def index
-
+    @search_ingredients = []
+    @search_ingredients << params[:query]
     if params[:query].present?
-      @ingredients = []
       @recipes = Recipe.search_by_everything(params[:query])
-      @ingredients << params[:query]
     else
       # Do we want to display all recipes on the index recipe page?
       @recipes = Recipe.all

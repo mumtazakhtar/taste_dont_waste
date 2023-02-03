@@ -16,14 +16,16 @@
             <% end %>
       </form>
 
-    <div class="current-search">
-      <h2>Current ingredients</h2>
-      <% @ingredients.each do |ingredient| %>
-        <div class="current">
-          <div class="ingr"><p><%= ingredient %></p><i class="fa-solid fa-x"></i></div>
+    <% if @search_ingredients.length > 0 %>
+        <div class="current-search">
+          <h2>Current ingredients</h2>
+          <% @search_ingredients.each do |ingredient| %>
+            <div class="current">
+              <div class="ingr"><p><%= ingredient %></p><i class="fa-solid fa-x"></i></div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+    <% end %>
 
       <div class="current-search">
         <h2>Current ingredients</h2>
