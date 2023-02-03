@@ -9,7 +9,7 @@
 
 .navbar-tdw {
   justify-content: space-between;
-  background: rgb(204, 213, 204);
+  background: $courgette;
   overflow: visible;
   padding: 5px;
 }
@@ -34,6 +34,14 @@
 .btn-call {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 0px;
+  margin-top: -4px;
   margin-right: 10px;
+}
+
+.nav-item {
+  p {
+    margin-top: 8px;
+    padding-right: 10px;
+    color: $squash;
+  }
 }
