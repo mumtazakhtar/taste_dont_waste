@@ -1,0 +1,24 @@
+.container_my_recipe {
+  display: flex;
+  margin-bottom: 28px;
+}
+.show_my_recipe {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  flex-grow: 2;
+  padding-left: 28px;
+  column-gap: 40px;
+  img {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+  }
+}
+.recipe_info {
+  h2{
+    color: $courgette;
+    padding: 8px;
+    text-align: center;
+  }
+}
