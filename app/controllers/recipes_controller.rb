@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :skip_authorization
-  # before_action :authenticate_user!, only: :toggle_favorite
 
   def toggle_favorite
     @recipe = Recipe.find_by(id: params[:id])
@@ -24,11 +23,16 @@ class RecipesController < ApplicationController
   def favorite
     @recipe = Recipe.find(params[:id])
     current_user.favorite(@recipe)
+    redirect_back(fallback_location: root_path)
+    # flash[:success] = "Post created successfully."
     # redirect_to recipe_path(@recipe), notice: "Recipe was saved to your cookbook."
   end
 
   def unfavorite
     @recipe = Recipe.find(params[:id])
     current_user.unfavorite(@recipe)
+    # flash[:success] = "Post created successfully."
+    redirect_back(fallback_location: root_path)
+    # redirect_to recipe_path(@recipe), notice: "Recipe was unfavorited."
   end
 end

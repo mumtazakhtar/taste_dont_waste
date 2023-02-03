@@ -44,20 +44,30 @@
           <div class="card-recipe">
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
 
-            <% if current_user.favorited?(recipe) %>
-              <%= link_to favorite_recipe_path(recipe), method: :post do %>
-                <i class="fa-solid fa-heart card-recipe-heart"></i>
+            <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
+            <% if user_signed_in? %>
+              <% if current_user.favorited?(recipe) %>
+                <div class="card-recipe-heart">
+                  <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
+                    <i class="fa-solid fa-heart"></i>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="card-recipe-heart">
+                  <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
+                    <i class="fa-regular fa-heart"></i>
+                  <% end %>
+                </div>
               <% end %>
+              <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
             <% else %>
-              <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
-              <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
-                <i class="fa-regular fa-heart card-recipe-heart"></i>
-             <% end %>
+                <div class="card-recipe-heart">
+                  <%= link_to new_user_registration_path do %>
+                    <i class="fa-regular fa-heart"></i>
+                  <% end %>
+                </div>
             <% end %>
 
-
-            <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
-            <i class="fa-regular fa-heart card-recipe-heart"></i>
               <div class="card-recipe-infos pt-2 px-3">
                 <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
                 <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
