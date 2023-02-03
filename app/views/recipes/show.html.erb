@@ -1,16 +1,7 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6">
-      <h2><%= @recipe.title %></h2>
-      <% if @recipe.photo.key %>
-        <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
-      <% end %>
+  <div class= "container-show">
 
-      <h2>Description</h2>
-      <% instructions = JSON.parse(@recipe.description)%>
-      <% instructions.each do |instruction| %>
-        <p><%= instruction %></p>
-      <% end %>
+    <div class="search-card">
       <h2>Ingredients</h2>
       <% ingredients = JSON.parse(@recipe.ingredients)%>
       <% ingredients.each do |ingredient| %>
@@ -20,6 +11,21 @@
           </ul>
         <% end %>
       <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h2><%= @recipe.title %></h2>
+        <% if @recipe.photo.key %>
+          <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
+        <% end %>
+
+        <h2>Description</h2>
+        <% instructions = JSON.parse(@recipe.description)%>
+        <% instructions.each do |instruction| %>
+          <p><%= instruction %></p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
