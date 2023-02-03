@@ -91,14 +91,17 @@
                   <% end %>
                 </div>
             <% end %>
+
               <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
                 <p><strong>Ingredients:</strong> <%=  %><BR>
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
+
                 <% @ingredients.each do |ingredient| %>
                   <% ingredient.uniq.each do |ing|%>
                       <%= ing.capitalize %>,
                   <% end %>
                 <% end %>
+
               </div>
           </div>
         <% end %>
