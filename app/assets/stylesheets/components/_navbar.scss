@@ -23,7 +23,6 @@
   border-radius: 50%;
 }
 
-
 .container-logo {
   display: flex;
   h3{
@@ -46,12 +45,7 @@
   }
 
   a {
-    color: $squash;
-    margin-right: 10px;
-  }
-
-  a:hover {
     color: $eggplant;
-
+    margin-right: 10px;
   }
 }
