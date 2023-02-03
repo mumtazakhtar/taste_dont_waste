@@ -18,6 +18,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @ingredients = JSON.parse(@recipe.ingredients)
+    @instructions = JSON.parse(@recipe.description)
   end
 
   def favorite

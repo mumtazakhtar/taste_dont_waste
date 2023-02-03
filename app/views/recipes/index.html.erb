@@ -72,9 +72,14 @@
 
               <div class="card-recipe-infos pt-2 px-3">
                 <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
-                <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+                <p><strong>Ingredients:</strong><BR>
+                <%  @ingredients = JSON.parse(recipe.ingredients) %>
+                <% @ingredients.each do |ingredient| %>
+                  <% ingredient.uniq.each do |ing|%>
+                      <%= ing.capitalize %>,
+                  <% end %>
+                <% end %>
                 <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
-                <strong>Description:</strong> <%= recipe.description %><BR></p>
               </div>
           </div>
         <% end %>
