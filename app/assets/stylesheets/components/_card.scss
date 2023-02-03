@@ -24,9 +24,16 @@
 .card-recipe {
   display: grid;
   flex-grow: 1;
-  padding: 14px;
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
   column-gap: 10px;
+<<<<<<< Updated upstream
   position: relative;
+=======
+  padding-bottom: 10px;
+  // position: relative;
+>>>>>>> Stashed changes
 }
 
 .card-recipe .card-recipe-heart {
@@ -56,15 +63,29 @@
   padding-left: 10px;
   //justify-content: space-around;
 
+  h2 i {
+    font-size: 14px;
+  }
+
   h2 {
-    font-size: 22px;
+    font-size: 20px;
     color: $eggplant;
     font-weight: bolder;
+<<<<<<< Updated upstream
+=======
+    font-family: $h2-font;
+    margin-top: 1px;
+>>>>>>> Stashed changes
   }
 
   p {
     font-size: 14px;
     color: black;
+<<<<<<< Updated upstream
+=======
+    line-height: normal;
+    object-fit: cover;
+>>>>>>> Stashed changes
   }
 }
 
