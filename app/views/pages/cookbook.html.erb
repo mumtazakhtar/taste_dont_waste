@@ -4,8 +4,11 @@
     <% if @cookbook_recipes %>
         <% @cookbook_recipes.each do |recipe| %>
           <div class="card-recipe">
+          <% if recipe.photo.key %>
             <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-
+          <% else %>
+          <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
+          <% end %>
             <% if current_user.favorited?(recipe) %>
               <%= link_to favorite_recipe_path(recipe), method: :post do %>
                 <i class="fa-solid fa-heart card-recipe-heart"></i>

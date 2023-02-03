@@ -2,14 +2,29 @@
 <div class="container-index">
   <div class="index-layout">
     <div class="search-card">
+
       <p id="filter">filter search results</p>
       <form id="form" role="search">
-        <input type="search" id="query" name="q" placeholder="Add more ingredients"
-        aria-label="Search through site content">
-        <button>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+                    <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Add more ingredients"
+            %>
+
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+            <i class='fa-solid fa-magnifying-glass'></i>
+            <% end %>
       </form>
+
+    <div class="current-search">
+      <h2>Current ingredients</h2>
+      <% @ingredients.each do |ingredient| %>
+        <div class="current">
+          <div class="ingr"><p><%= ingredient %></p><i class="fa-solid fa-x"></i></div>
+        </div>
+      <% end %>
+    </div>
+
       <div class="current-search">
         <h2>Current ingredients</h2>
         <div class="current">
@@ -19,6 +34,7 @@
           <div class="ingr"><p>Squash</p><i class="fa-solid fa-x"></i></div>
         </div>
       </div>
+
       <div class ="dietary">
         <h2>Dietary restrictions</h2>
         <div class="check">
@@ -44,42 +60,48 @@
     <div class="card-holder">
         <% @recipes.each do |recipe| %>
           <div class="card-recipe">
+          <% if recipe.photo.key %>
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-
-            <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
-            <% if user_signed_in? %>
-              <% if current_user.favorited?(recipe) %>
-                <div class="card-recipe-heart">
-                  <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
-                    <i class="fa-solid fa-heart fa-2xl"></i>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="card-recipe-heart">
-                  <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
-                    <i class="fa-regular fa-heart fa-2xl"></i>
-                  <% end %>
-                </div>
-              <% end %>
-              <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
             <% else %>
-                <div class="card-recipe-heart">
-                  <%= link_to new_user_registration_path do %>
-                    <i class="fa-regular fa-heart fa-2xl"></i>
+            <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
+          <% end %>
+
+              <div class="card-recipe-infos pt-2 px-3">
+                <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i></h2>
+                <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
+                <% if user_signed_in? %>
+                   <% if current_user.favorited?(recipe) %>
+                       <div class="card-recipe-heart">
+                         <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
+                         <h2><i class="fa-solid fa-heart"></i></h2>
+                      <% end %>
+                        </div>
+                      <% else %>
+                      <div class="card-recipe-heart">
+                      <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
+                      <h2><i class="fa-regular fa-heart"></i></h2>
+                      <% end %>
+                      </div>
+                 <% end %>
+              <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
+                      <% else %>
+                     <div class="card-recipe-heart">
+                     <%= link_to new_user_registration_path do %>
+                    <h2><i class="fa-regular fa-heart"></i></h2>
                   <% end %>
                 </div>
             <% end %>
 
-              <div class="card-recipe-infos pt-2 px-3">
-                <h2><%=link_to recipe.title, recipe_path(recipe) %></h2>
-                <p><strong>Ingredients:</strong><BR>
-                <%  @ingredients = JSON.parse(recipe.ingredients) %>
+              <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+                <p><strong>Ingredients:</strong> <%=  %><BR>
+                <% @ingredients = JSON.parse(recipe.ingredients) %>
+
                 <% @ingredients.each do |ingredient| %>
                   <% ingredient.uniq.each do |ing|%>
                       <%= ing.capitalize %>,
                   <% end %>
                 <% end %>
-                <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
+
               </div>
           </div>
         <% end %>
