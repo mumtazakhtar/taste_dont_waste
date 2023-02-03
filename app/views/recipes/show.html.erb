@@ -1,5 +1,25 @@
 <div class="container">
-  <h2><%= @recipe.title %></h2>
-  <h3><%= @recipe.ingredients %>
-  <p><%= @recipe.description %></p>
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <h2><%= @recipe.title %></h2>
+      <% if @recipe.photo.key %>
+        <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
+      <% end %>
+
+      <h2>Description</h2>
+      <% instructions = JSON.parse(@recipe.description)%>
+      <% instructions.each do |instruction| %>
+        <p><%= instruction %></p>
+      <% end %>
+      <h2>Ingredients</h2>
+      <% ingredients = JSON.parse(@recipe.ingredients)%>
+      <% ingredients.each do |ingredient| %>
+        <% ingredient.each do |ing|%>
+          <ul>
+            <li><%= ing %></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
