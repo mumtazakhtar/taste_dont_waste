@@ -10,10 +10,20 @@
               class: "form-control",
               placeholder: "Add more ingredients"
             %>
+
             <%= button_tag(type: "submit", class: "btn btn-default") do %>
             <i class='fa-solid fa-magnifying-glass'></i>
             <% end %>
       </form>
+
+    <div class="current-search">
+      <h2>Current ingredients</h2>
+      <% @ingredients.each do |ingredient| %>
+        <div class="current">
+          <div class="ingr"><p><%= ingredient %></p><i class="fa-solid fa-x"></i></div>
+        </div>
+      <% end %>
+    </div>
 
       <div class="current-search">
         <h2>Current ingredients</h2>
