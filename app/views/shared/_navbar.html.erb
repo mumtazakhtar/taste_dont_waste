@@ -10,7 +10,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <div class="name-card">
-    <%= link_to "Go to your cookbook", "#", class: "btn-call" %>
+    <%= link_to "Go to your cookbook", cookbook_path, class: "btn-call" %>
       <% if current_user %>
         <% end %>
       </div>
@@ -26,7 +26,7 @@
             <% if current_user %>
               <%= image_tag "cheeseburger-dark.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "My cookbook", "#", class: "dropdown-item" %>
+                <%= link_to "My cookbook", cookbook_path, class: "dropdown-item" %>
                 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete},class: "dropdown-item" %>
               </div>
             <% elsif !current_user %>
