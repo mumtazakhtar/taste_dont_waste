@@ -24,8 +24,11 @@
 .card-recipe {
   display: grid;
   flex-grow: 1;
-  padding: 14px;
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
   column-gap: 10px;
+  padding-bottom: 10px;
   // position: relative;
 }
 
@@ -61,17 +64,23 @@
   position: relative;
   line-height: 1;
 
+  h2 i {
+    font-size: 14px;
+  }
+
   h2 {
-    font-size: 22px;
+    font-size: 20px;
     color: $eggplant;
     font-weight: bolder;
     font-family: $h2-font;
+    margin-top: 1px;
   }
 
   p {
     font-size: 14px;
     color: black;
     line-height: normal;
+    object-fit: cover;
   }
 }
 
