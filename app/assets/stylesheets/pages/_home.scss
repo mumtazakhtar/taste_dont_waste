@@ -11,22 +11,30 @@
   margin-top: -2vw;
 }
 
+.container-banner {
+  margin-top: 50px;
+  margin-left: 50px;
+
+}
 .banner h1 {
   margin: 0;
   font-family: $h1-font;
-  color: $logo;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  font-size: 40px;
+  color: $courgette;
+  text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.8);
+  font-size: 50px;
   font-weight: bold;
   padding-bottom: 10px;
+
 }
 
 .banner h2 {
-  font-size: 20px;
+  font-size: 25px;
   font-family: $h2-font;
-  color: $squash;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  font-weight: bold;
+  color: rgb(20, 0, 34);
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
   padding-bottom: 10px;
+
 }
 
 .has-search .form-control {
