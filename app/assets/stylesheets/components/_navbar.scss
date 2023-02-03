@@ -44,4 +44,14 @@
     padding-right: 10px;
     color: $squash;
   }
+
+  a {
+    color: $squash;
+    margin-right: 10px;
+  }
+
+  a:hover {
+    color: $eggplant;
+
+  }
 }
