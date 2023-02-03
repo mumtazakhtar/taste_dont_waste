@@ -30,6 +30,5 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     current_user.unfavorite(@recipe)
     redirect_back_or_to 'fallback_location: root_path', alert: "Removed #{@recipe.title} recipe from your cookbook."
-
   end
 end
