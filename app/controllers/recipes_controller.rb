@@ -15,6 +15,15 @@ class RecipesController < ApplicationController
       # Do we want to display all recipes on the index recipe page?
       @recipes = Recipe.all
     end
+
+    # if params[:cookingTime] == 60
+    #   # @recipes = Recipe.where(params[:cookingtime] > 60)
+    #   # @recipes = Recipe.search_by_cookingtime
+
+    # else
+    #   @recipes = Recipe.all
+    # end
+
   end
 
   def show
