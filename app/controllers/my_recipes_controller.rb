@@ -44,7 +44,7 @@ class MyRecipesController < ApplicationController
   def destroy
     authorize @my_recipe
     @my_recipe.destroy
-    redirect_to root_path, notice: 'Deleted successfully'
+    redirect_to cookbook_path, notice: 'Deleted successfully'
   end
 
   private

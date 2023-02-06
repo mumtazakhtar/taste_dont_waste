@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
 
   def index
     @items = policy_scope(Item)
-    @items = Item.find_by(user_id: user.id).all
+    # @items = Item.find_by(user_id: user.id).all
+    @items = Item.all
     # add a sort by function
   end
 
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_path, notice: 'Deleted succesfully'
+    redirect_to cookbook_path, notice: 'Deleted succesfully'
   end
 
   private

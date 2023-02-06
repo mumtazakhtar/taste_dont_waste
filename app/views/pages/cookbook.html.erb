@@ -1,6 +1,10 @@
 
-<div>
+<div class="container">
   <h1>My saved recipes</h1>
+  <hr>
+    <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-back" %>
+    <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-back" %>
+    <%= link_to "Back to the search page", root_path, class:"btn-back" %>
     <div class="container-cookbook">
       <div class="index-layout-cookbook">
         <div class="card-holder">
@@ -51,15 +55,15 @@
             <% else %>
               <p>You have no favorite recipes yet!</p>
             <% end %>
-            <div>
-              <h1>My own recipes</h1>
+
+              <%# my own recipes %>
                 <% if @recipes_created %>
                   <% @recipes_created.each do |recipe| %>
                     <div class="card-recipe">
                       <% if recipe.photo.key %>
                         <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
                       <% else %>
-                        <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
+                        <%= link_to image_tag("logo.png"), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
                       <% end %>
                       <% if current_user.favorited?(recipe) %>
                         <%= link_to favorite_recipe_path(recipe), method: :post do %>
@@ -74,42 +78,67 @@
                       <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
                       <i class="fa-regular fa-heart card-recipe-heart"></i>
                         <div class="card-recipe-infos pt-2 px-3">
+                        <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
                           <h2><%=link_to recipe.title, my_recipe_path(recipe) %></h2>
                           <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
-                          <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
+                          <%= link_to my_recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?"} do %>
+                          <i class="fa-regular fa-trash-can card-recipe-trash"></i>
+                        <% end %>
                         </div>
                     </div>
                 <% end %>
                 <% else %>
                   <p>You have not created any recipes yet!</p>
                 <% end %>
-            </div>
         </div>
+
+        <%# inventory list %>
         <div class="inventory">
           <h1>My inventory list</h1>
             <br>
-              <table>
+              <table class="table">
                 <tr>
                   <th>Product</th>
                   <th>Best by date</th>
                   <th>Stock</th>
                   <th>Delete</th>
                 </tr>
-                <% @items.each do |item| %>
+                  <% @items.each do |item| %>
                 <tr>
-                  <td><%= item.product %></td>
-                  <td><%= item.bestByDate %></td>
-                  <td><%= item.stock %></td>
-                  <td><i class="fa-solid fa-trash-can"></i></td>
+                  <td><button type="button" class="btn-nrm" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>">
+                  <%= item.product %>
+                  </button></td>
+                    <td><%= item.bestByDate %></td>
+                    <td><%= item.stock %></td>
+                    <td><%= link_to item_path(item), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this product?"} do %>
+                    <i class="fa-regular fa-trash-can"></i>
+                  <% end %>
+                  </td>
+                  <div class="modal fade" id="exampleModal<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel"><%= item.product %></h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                      <div class="modal-body">
+                        <%= render 'items/form', item: item %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
                 <% end %>
                 </tr>
                 </table>
-              <%= link_to "Put an item on the list", new_item_path, class:"btn-nrm" %><br>
+              <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-nrm" %><br>
         </div>
       </div>
     </div>
+
     <div>
-      <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-nrm" %><br>
-      <%= link_to "Back to homepage", root_path, class:"btn-nrm" %><br>
+      <%= link_to "Back to the search page", root_path, class:"btn-nrm" %>
     </div>
 </div>

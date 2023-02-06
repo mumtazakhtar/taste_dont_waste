@@ -5,7 +5,7 @@
         <% if @my_recipe.photo.key %>
           <%= cl_image_tag @my_recipe.photo.key %>
         <% else %>
-          <img src="logo.png" alt="my_recipe">
+          <%= image_tag("logo.png") %>
         <% end %>
       </div>
     </div>
