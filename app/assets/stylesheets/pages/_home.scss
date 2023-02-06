@@ -1,13 +1,13 @@
 // Specific CSS for your home-page
 
 .banner {
-  background-image: linear-gradient(to bottom, rgba(219, 248, 218, 0.5), rgba(117, 19, 93, 0.2)),
-  url('banner-courgette.jpg');
+  background-image: linear-gradient(to bottom, rgba(219, 248, 218, 0.4), rgba(117, 19, 93, 0.281)),
+  url('banner-flip.jpg');
   background-repeat: no-repeat;
   //background-attachment: fixed;
   object-fit: cover;
   background-size: cover;
-  padding: 190px 0;
+  padding: 250px 0;
   margin-top: -2vw;
 }
 
@@ -19,22 +19,27 @@
 .banner h1 {
   margin: 0;
   font-family: $h1-font;
-  color: $courgette;
-  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
-  font-size: 50px;
-  font-weight: bold;
+  //color: $courgette;
+  background: -webkit-linear-gradient( #9b1a74, #0f5317);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 5px -1px 1px rgba(255, 255, 255, 0.9);
+  font-size: 75px;
+  //font-weight: bold;
   padding-bottom: 10px;
 
 }
 
 .banner h2 {
-  font-size: 20px;
+  font-size: 30px;
   font-family: $h2-font;
   font-weight: bold;
-  color: rgb(20, 0, 34);
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-  padding-bottom: 10px;
-
+  //color: rgb(20, 0, 34);
+  background: -webkit-linear-gradient( #7e2966, #074c0f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 4px -1px 0px rgb(255, 249, 235);
+  padding-bottom: 30px;
 }
 
 .has-search .form-control {
@@ -44,7 +49,7 @@
 }
 
 .form-control {
-  background-color: rgb(255, 253, 224);
+  background-color: rgb(255, 254, 246);
   color: $eggplant;
 }
 
