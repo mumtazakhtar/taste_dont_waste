@@ -5,10 +5,17 @@ class Recipe < ApplicationRecord
 
   include PgSearch::Model
 
-  # Now we search by title ingredients description cookingtime
-  # Can be less or more later in the process
+  # Search by ingredients and title for homepage and recipes index
   pg_search_scope :search_by_everything,
-                  against: %i[ingredients],
+                  against: %i[ingredients title],
+                  using: {
+                    tsearch:
+                    { prefix: true }
+                  }
+
+  # Search by cookingtime for recipes index
+  pg_search_scope :search_by_cookingtime,
+                  against: %i[cookingTime],
                   using: {
                     tsearch:
                     { prefix: true }

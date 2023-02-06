@@ -7,5 +7,8 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
+
 import SearchRecipesController from "./search_recipes_controller"
 application.register("search-recipes", SearchRecipesController)
