@@ -11,22 +11,31 @@
               placeholder: "Add more ingredients",
               'data-search-recipes-target': "form"
             %>
-            <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#addIngredient"}) do %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
             <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
       </form>
 
-    <% if @search_ingredients.length > 0 %>
+  <div data-search-recipes-target="ingredients">
+    <% if @search_ingredients.present? %>
     <% newingredients = @search_ingredients.split(", ") %>
         <div class="current-search">
           <h2>Current ingredients</h2>
           <% newingredients.each do |ingredient| %>
+          <% next if ingredient.empty? %>
             <div class="current">
-              <div class="ingr"><p><%= ingredient %></p><i class="fa-solid fa-x"></i></div>
+              <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+              <div class="ingr">
+                 <p><%= ingredient %></p>
+                <div data-search-recipes-target="ingredientlist"><i class="fa-solid fa-x"></i></div>
+              </div>
+              <% end %>
             </div>
           <% end %>
         </div>
-    <% end %></div>
+    <% end %>
+    </div>
+    </div>
 
       <div class ="dietary">
         <h2>Dietary restrictions</h2>
@@ -41,6 +50,29 @@
           <label for="lactose-free"> Lactose free</label></div>
         </div>
       </div>
+
+      <div class ="dietary">
+        <h2>Cooking Time</h2>
+        <%# NOT USABLE YET %>
+        <div class="check">
+         <form id="form" role="search">
+        <%= radio_button_tag(:cookingTime, "all") %>
+        <%= label_tag(:cookingTime_all, "Show all") %>
+        <%= radio_button_tag(:cookingTime, "30") %>
+        <%= label_tag(:cookingTime_30, "< 30 min") %>
+        <%= radio_button_tag(:cookingTime, "45") %>
+        <%= label_tag(:cookingTime_45, "< 45 min") %>
+        <%= radio_button_tag(:cookingTime, "60") %>
+        <%= label_tag(:cookingTime_60, "< 60 min") %>
+
+          <%= submit_tag "Search" %>
+        </form>
+
+
+        </div>
+      </div>
+
+
       <div class="your-list">
         <h2>Your pantry items</h2>
           <div class="items">
@@ -58,7 +90,7 @@
     </div>
   <% else %>
     <div class="card-holder">
-        <% @recipes.each do |recipe| %>
+         <% @recipes.each do |recipe| %>
           <div class="card-recipe">
           <% if recipe.photo.key %>
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
