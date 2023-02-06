@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="search-recipes"
 export default class extends Controller {
 
-  static targets = [ "form", "ingredients", "ingredient" ]
+  static targets = [ "form", "ingredients", "ingredient", "ingredientlist" ]
   static values = ["ingredient"]
 
   connect() {
@@ -17,11 +17,14 @@ export default class extends Controller {
 
   removeIngredient() {
     console.log("Remove button clicked")
-    console.log(this.ingredientTarget.innerText)
+    console.log(this.ingredientlistTarget.innerText)
+
+    console.log(this.ingredientlistTargets)
+    // console.log(event.ingredientTarget)
     // console.log(this.ingredientTarget.value)
     // console.log(this.searchRecipesTarget.value)
     // console.log(this.ingredientTarget.value)
-    console.log(this.ingredientTarget.value)
+    // console.log(this.ingredientlistTarget.value)
     // console.log(this.searchIngredientTarget.value)
 
     // console.log(this.formTarget.value)

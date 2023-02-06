@@ -23,9 +23,11 @@
           <h2>Current ingredients</h2>
           <% newingredients.each do |ingredient| %>
             <div class="current">
-              <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient", target: "ingredient", value: "#{ingredient}"}) do %>
+              <%# <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient", target: "ingredientlist", value: "#{ingredient}"}) do %>
+              <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+
               <div class="ingr">
-                <p data-search-recipes-target="ingredient" data-search-recipes-ingredient-value=<%="#{ingredient}"%>><%= ingredient %></p>
+                <p data-search-recipes-target="ingredientlist" data-search-recipes-ingredientlist-value=<%="#{ingredient}"%>><%= ingredient %></p>
                 <i class="fa-solid fa-x"></i>
               </div>
               <% end %>
