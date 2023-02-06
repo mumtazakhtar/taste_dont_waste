@@ -7,7 +7,7 @@
   //background-attachment: fixed;
   object-fit: cover;
   background-size: cover;
-  padding: 190px 0;
+  padding: 250px 0;
   margin-top: -2vw;
 }
 
@@ -20,20 +20,23 @@
   margin: 0;
   font-family: $h1-font;
   color: $courgette;
-  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
-  font-size: 50px;
+  background: -webkit-linear-gradient( #074c0f, #9c1a9c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  //text-shadow: 1px 1px 5px rgba(180, 113, 180, 0.8);
+  font-size: 70px;
   font-weight: bold;
   padding-bottom: 10px;
 
 }
 
 .banner h2 {
-  font-size: 20px;
+  font-size: 25px;
   font-family: $h2-font;
-  font-weight: bold;
+  //font-weight: bold;
   color: rgb(20, 0, 34);
-  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-  padding-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(49, 141, 12, 0.8);
+  padding-bottom: 20px;
 
 }
 
