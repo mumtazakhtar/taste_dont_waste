@@ -4,7 +4,7 @@
 
       <p id="filter">filter search results</p>
       <form id="form" role="search">
-                    <%= text_field_tag :query,
+           <%= text_field_tag :query,
               params[:query],
               class: "form-control",
               placeholder: "Add more ingredients"
@@ -74,7 +74,7 @@
                       <h2><i class="fa-regular fa-heart"></i></h2>
                       <% end %>
                       </div>
-                 <% end %>
+                <% end %>
               <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
                       <% else %>
                      <div class="card-recipe-heart">
@@ -93,9 +93,10 @@
                       <%= ing.capitalize %>,
                   <% end %>
                 <% end %>
-
+                <%# for pop up recipe %>
               </div>
           </div>
+          
         <% end %>
     </div>
   </div>
