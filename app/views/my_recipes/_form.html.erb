@@ -1,8 +1,8 @@
 <div class="container-cookbook">
 <%= simple_form_for @my_recipe do |f| %>
   <%= f.input :title %>
-  <%= f.input :ingredients %>
-  <%= f.input :description %>
+  <%= f.input :ingredients, as: :text, :input_html => {:rows => 4 } %>
+  <%= f.input :description, as: :text, :input_html => { :cols => 5, :rows => 10 } %>
   <%= f.input :cookingTime %>
   <%= f.input :photo, as: :file %>
   <%= f.submit(class: "btn-call") %>

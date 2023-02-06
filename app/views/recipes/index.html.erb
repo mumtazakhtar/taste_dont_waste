@@ -55,7 +55,7 @@
           <div class="card-recipe">
           <% if recipe.photo.key %>
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-            <% else %>
+          <% else %>
             <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
           <% end %>
 
@@ -64,26 +64,26 @@
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                 <% if user_signed_in? %>
                    <% if current_user.favorited?(recipe) %>
-                       <div class="card-recipe-heart">
-                         <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
-                         <h2><i class="fa-solid fa-heart"></i></h2>
-                      <% end %>
-                        </div>
-                      <% else %>
                       <div class="card-recipe-heart">
-                      <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
-                      <h2><i class="fa-regular fa-heart"></i></h2>
-                      <% end %>
+                        <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
+                          <h2><i class="fa-solid fa-heart"></i></h2>
+                        <% end %>
                       </div>
-                <% end %>
+                    <% else %>
+                      <div class="card-recipe-heart">
+                        <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
+                          <h2><i class="fa-regular fa-heart"></i></h2>
+                        <% end %>
+                      </div>
+                    <% end %>
               <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
-                      <% else %>
-                     <div class="card-recipe-heart">
-                     <%= link_to new_user_registration_path do %>
-                    <h2><i class="fa-regular fa-heart"></i></h2>
-                  <% end %>
-                </div>
-            <% end %>
+                <% else %>
+                  <div class="card-recipe-heart">
+                    <%= link_to new_user_registration_path do %>
+                      <h2><i class="fa-regular fa-heart"></i></h2>
+                    <% end %>
+                  </div>
+                <% end %>
 
               <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
                 <p><strong>Ingredients:</strong> <%=  %><BR>
@@ -95,9 +95,30 @@
                   <% end %>
                 <% end %>
                 <%# for pop up recipe %>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Quick View
+                </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel"><%= recipe.title %></h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>sgldlwkjdlknw m jiefhiuehhfjfewahfwjfalkfnb </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
           </div>
-          
         <% end %>
     </div>
   </div>
