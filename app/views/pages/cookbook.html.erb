@@ -1,55 +1,115 @@
-<div class="container-cookbook">
-  <h1>My cookbook</h1>
-    <div class="card-holder">
-    <% if @cookbook_recipes %>
-        <% @cookbook_recipes.each do |recipe| %>
-          <div class="card-recipe">
-          <% if recipe.photo.key %>
-            <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-          <% else %>
-          <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
-          <% end %>
-            <% if current_user.favorited?(recipe) %>
-              <%= link_to favorite_recipe_path(recipe), method: :post do %>
-                <i class="fa-solid fa-heart card-recipe-heart"></i>
-              <% end %>
-            <% else %>
-              <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
-              <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
-                <i class="fa-regular fa-heart card-recipe-heart"></i>
-             <% end %>
-            <% end %>
-            <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
-            <i class="fa-regular fa-heart card-recipe-heart"></i>
-              <div class="card-recipe-infos pt-2 px-3">
-                <h2><%=link_to recipe.title, my_recipe_path(recipe) %></h2>
-                <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
-                <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
-              </div>
-          </div>
-        <% end %>
-      <% else %>
-      <p>You have no recipes yet!</p>
-      <% end %>
-    </div>
-    <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-nrm" %><br>
-    <%= link_to "Back to homepage", root_path, class:"btn-nrm" %><br>
 
-  <h1>My inventory list</h1>
-  <br>
-  <table>
-    <tr>
-    <th>Product</th>
-    <th>Best by date</th>
-    <th>Stock</th>
-    </tr>
-    <% @items.each do |item| %>
-    <tr>
-    <td><%= item.product %></td>
-    <td><%= item.bestByDate %></td>
-    <td><%= item.stock %></td>
-    <% end %>
-    </tr>
-    </table>
-    <%= link_to "Put an item on the list", new_item_path, class:"btn-nrm" %><br>
+<div>
+  <h1>My saved recipes</h1>
+    <div class="container-cookbook">
+      <div class="index-layout-cookbook">
+        <div class="card-holder">
+          <% if @recipes_favorite %>
+            <% @recipes_favorite.each do |recipe| %>
+              <div class="card-recipe">
+                <% if recipe.photo.key %>
+                  <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
+                <% else %>
+                  <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
+                <% end %>
+                <div class="card-recipe-infos pt-2 px-3">
+                  <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
+                	  <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
+                  <% if user_signed_in? %>
+                    <% if current_user.favorited?(recipe) %>
+                      <div class="card-recipe-heart">
+                        <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
+                          <h2><i class="fa-solid fa-heart"></i></h2>
+                        <% end %>
+                      </div>
+                      <% else %>
+                        <div class="card-recipe-heart">
+                          <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
+                            <h2><i class="fa-regular fa-heart"></i></h2>
+                          <% end %>
+                        </div>
+                      <% end %>
+                        <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
+                      <% else %>
+                        <div class="card-recipe-heart">
+                          <%= link_to new_user_registration_path do %>
+                            <h2><i class="fa-regular fa-heart"></i></h2>
+                          <% end %>
+                        </div>
+                      <% end %>
+                      <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+                      <p><strong>Ingredients:</strong> <%=  %><BR>
+                      <% @ingredients = JSON.parse(recipe.ingredients) %>
+                      <% @ingredients.each do |ingredient| %>
+                      <% ingredient.uniq.each do |ing|%>
+                        <%= ing.capitalize %>,
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <% else %>
+              <p>You have no favorite recipes yet!</p>
+            <% end %>
+            <div>
+              <h1>My own recipes</h1>
+                <% if @recipes_created %>
+                  <% @recipes_created.each do |recipe| %>
+                    <div class="card-recipe">
+                      <% if recipe.photo.key %>
+                        <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
+                      <% else %>
+                        <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
+                      <% end %>
+                      <% if current_user.favorited?(recipe) %>
+                        <%= link_to favorite_recipe_path(recipe), method: :post do %>
+                          <i class="fa-solid fa-heart card-recipe-heart"></i>
+                        <% end %>
+                      <% else %>
+                        <%= link_to unfavorite_recipe_path(recipe), method: :post do %>
+                        <%# <%= link_to save_post_post_path(anchor: "bookmark"), method: :post, class: "save-btn", id: "bookmark" do %>
+                          <i class="fa-regular fa-heart card-recipe-heart"></i>
+                        <% end %>
+                      <% end %>
+                      <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
+                      <i class="fa-regular fa-heart card-recipe-heart"></i>
+                        <div class="card-recipe-infos pt-2 px-3">
+                          <h2><%=link_to recipe.title, my_recipe_path(recipe) %></h2>
+                          <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+                          <strong>Cooking time:</strong> <%= recipe.cookingTime %><BR>
+                        </div>
+                    </div>
+                <% end %>
+                <% else %>
+                  <p>You have not created any recipes yet!</p>
+                <% end %>
+            </div>
+        </div>
+        <div class="inventory">
+          <h1>My inventory list</h1>
+            <br>
+              <table>
+                <tr>
+                  <th>Product</th>
+                  <th>Best by date</th>
+                  <th>Stock</th>
+                  <th>Delete</th>
+                </tr>
+                <% @items.each do |item| %>
+                <tr>
+                  <td><%= item.product %></td>
+                  <td><%= item.bestByDate %></td>
+                  <td><%= item.stock %></td>
+                  <td><i class="fa-solid fa-trash-can"></i></td>
+                <% end %>
+                </tr>
+                </table>
+              <%= link_to "Put an item on the list", new_item_path, class:"btn-nrm" %><br>
+        </div>
+      </div>
+    </div>
+    <div>
+      <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-nrm" %><br>
+      <%= link_to "Back to homepage", root_path, class:"btn-nrm" %><br>
+    </div>
 </div>

@@ -1,25 +1,26 @@
-<% if @my_recipe.photo.attached? %>
-  <div class="banner" style="background-image: linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.4)), url(<%= cl_image_path @my_recipe.photo.key %>);">
-    <div class="container">
-      <h1><%= @my_recipe.title %></h1>
-      <p><strong>Cooking time:</strong><%= @my_recipe.cookingTime %><BR>
-      <strong>Number of ingrdients:</strong> Array ingredients? </p>
+<div class= "container_my_recipe">
+  <div class="show_my_recipe">
+    <div class="my_recipe">
+      <div>
+        <% if @my_recipe.photo.key %>
+          <%= cl_image_tag @my_recipe.photo.key %>
+        <% else %>
+          <img src="logo.png" alt="my_recipe">
+        <% end %>
+      </div>
+    </div>
+    <div class= "recipe_info">
+      <h2><%= @my_recipe.title %></h2>
+      <div>
+        <h3>Ingredients</h2>
+        <p><%= @my_recipe.ingredients %></p>
+      </div>
+      <div>
+        <h3>Instructions</h2>
+        <p><%= @my_recipe.description %></p>
+      </div>
+      <%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn-back" %>
+      <%= link_to "Back to your cookbook", cookbook_path, class:"btn-back" %>
     </div>
   </div>
-<% end %>
-
-<div class="container">
-  <h2>How to make <%= @my_recipe.title %></h2>
-
-  <p><strong>Ingredients:</strong> <%= @my_recipe.ingredients %><BR>
-  <strong>Cooking Time:</strong> <%= @my_recipe.cookingTime %> minutes</p>
-
-  <p><strong>Description:</strong> <BR>
-  <%= @my_recipe.description %></p>
-
-<%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn btn-dark" %>
-<%= link_to "Back to all your recipes", my_recipes_path, class:"btn btn-dark" %>
-
-
-
 </div>

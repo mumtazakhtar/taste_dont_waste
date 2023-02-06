@@ -24,10 +24,23 @@
   transition: opacity 0.3s ease;
   text-decoration: none;
   margin-bottom: 8px;
+  max-height: 45px;
 }
 
 .btn-nrm:hover {
   color: $courgette;
   transition: 0.3s ease;
   border: 1px solid $courgette;
+}
+
+.btn-back {
+  background-color: $eggplant;
+  color: $squash;
+  padding: 8px;
+  border-radius: 25px;
+}
+.btn-back:hover {
+  background-color: $courgette;
+  color: $squash;
+  padding: 10px;
 }
