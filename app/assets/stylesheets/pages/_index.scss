@@ -7,6 +7,10 @@
 body {
   margin-top: 4vw;
 }
+h2 {
+color: $eggplant;
+font-family: $h2-font;
+}
 
 a {
   color: $eggplant;
@@ -176,6 +180,12 @@ a:hover {
     color: $eggplant;
   }
 }
+
+.no-recipes {
+  margin-top: 45px;
+  text-align: center;
+}
+
 
 //  for the pop up
 .button1 {

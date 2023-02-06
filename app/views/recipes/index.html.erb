@@ -50,6 +50,13 @@
       </div>
     </div>
 
+  <%# Recipe Results page %>
+  <% if @recipes.empty? %>
+    <div class="no-recipes">
+      <img src="recipe1-not-found.png",>
+      <h2>Sorry! We don't have anything for your search</h2>
+    </div>
+  <% else %>
     <div class="card-holder">
         <% @recipes.each do |recipe| %>
           <div class="card-recipe">
@@ -125,6 +132,7 @@
               </div>
           </div>
         <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
