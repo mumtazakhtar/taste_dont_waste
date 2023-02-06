@@ -5,7 +5,7 @@
       <div data-controller="search-recipes">
       <p id="filter">Enter your ingredients, comma seperated</p>
       <form id="form" role="search">
-                    <%= text_field_tag :query,
+           <%= text_field_tag :query,
               params[:query],
               class: "form-control",
               placeholder: "Add more ingredients",
@@ -50,40 +50,50 @@
       </div>
     </div>
 
+  <%# Recipe Results page %>
+  <% if @recipes.empty? %>
+    <div class="no-recipes">
+      <img src="recipe1-not-found.png",>
+      <h2>Sorry! We don't have anything for your search</h2>
+    </div>
+  <% else %>
     <div class="card-holder">
         <% @recipes.each do |recipe| %>
           <div class="card-recipe">
           <% if recipe.photo.key %>
             <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
-            <% else %>
+          <% else %>
             <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
           <% end %>
 
               <div class="card-recipe-infos pt-2 px-3">
                 <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
+                <div class="card-recipe card-recipe-quickview"  data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
+                  <i class="fa-solid fa-expand"></i>
+                </div>
                 <% if user_signed_in? %>
                    <% if current_user.favorited?(recipe) %>
-                       <div class="card-recipe-heart">
-                         <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
-                         <h2><i class="fa-solid fa-heart"></i></h2>
-                      <% end %>
-                        </div>
-                      <% else %>
                       <div class="card-recipe-heart">
-                      <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
-                      <h2><i class="fa-regular fa-heart"></i></h2>
-                      <% end %>
+                        <%= link_to unfavorite_recipe_path(recipe),  data: { turbo_method: "post" } do %>
+                          <h2><i class="fa-solid fa-heart"></i></h2>
+                        <% end %>
                       </div>
-                 <% end %>
+                    <% else %>
+                      <div class="card-recipe-heart">
+                        <%= link_to favorite_recipe_path(recipe), data: { turbo_method: "post" } do %>
+                          <h2><i class="fa-regular fa-heart"></i></h2>
+                        <% end %>
+                      </div>
+                    <% end %>
               <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
-                      <% else %>
-                     <div class="card-recipe-heart">
-                     <%= link_to new_user_registration_path do %>
-                    <h2><i class="fa-regular fa-heart"></i></h2>
-                  <% end %>
-                </div>
-            <% end %>
+                <% else %>
+                  <div class="card-recipe-heart">
+                    <%= link_to new_user_registration_path do %>
+                      <h2><i class="fa-regular fa-heart"></i></h2>
+                    <% end %>
+                  </div>
+                <% end %>
 
               <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
                 <p><strong>Ingredients:</strong> <%=  %><BR>
@@ -95,9 +105,34 @@
                   <% end %>
                 <% end %>
 
+                <!-- Modal for pop up recipe -->
+                <div class="modal fade" id="exampleModal<%= recipe.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><%= recipe.title %></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h2>Instructions</h2>
+                          <% @instructions = JSON.parse(recipe.description) %>
+                        <ol>
+                          <% @instructions.each do |instruction| %>
+                            <li><%= instruction %></li>
+                          <% end %>
+                        </ol>
+                      </div>
+                      <div class="modal-footer">
+                        <%= link_to "Show full Recipe", recipe_path(recipe), class: "btn-call" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
           </div>
         <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
