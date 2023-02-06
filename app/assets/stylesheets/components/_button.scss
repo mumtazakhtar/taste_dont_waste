@@ -1,7 +1,9 @@
 .btn-call {
   border: 1px solid $eggplant;
   padding: 8px 24px;
-  background-color: $eggplant;
+  box-shadow: 0px 0px 12px -2px rgba(53, 255, 3, 0.5);
+  //background: linear-gradient(to right, #7e2966, $eggplant, #7e2966);
+  background-color: #7e2966;
   color: $squash;
   border-radius: 25px;
   text-decoration: none;
