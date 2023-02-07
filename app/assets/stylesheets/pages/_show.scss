@@ -9,8 +9,9 @@
   }
 
   p{
-    color: $courgette;
+    color: $eggplant;
     text-align: center;
+    //background-color: lightcyan;
   }
 }
 
@@ -33,28 +34,33 @@
     margin-bottom: 10px;
     margin-top: 1rem;
     font-family: $h1-font;
+    font-size: 35px;
   }
 }
 
 .card-list {
   position: sticky;
-  top: 0;
+  top: 40px;
   border: 1px solid rgb(213, 225, 213);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding-right: 12px;
   padding-left: 5px;
   margin-left: 0px;
   padding-top: 10px;
-  overflow: visible;
+  overflow-y: scroll;
+  max-height: 80vh;
+
+
 
   h2 {
-    //position: sticky;
-    //top: 0;
     text-align: center;
+    color: $squash;
     margin-bottom: 20px;
     //border: 1px solid $eggplant;
     border-radius: 4px;
-    background-color: $salad;
+    background-color: $courgette;
+    box-shadow: 0 0 10px rgba(66, 114, 3, 0.764);
+    font-size: 21px;
   }
 
   li {
@@ -67,6 +73,10 @@
     margin-bottom: 40px;
     position: sticky;
     top: 0;
+  }
+
+  p i {
+    font-size: 15px;
   }
 }
 
@@ -100,13 +110,21 @@
     margin-top: 40px;
   }
   .show {
+    grid-template-columns: 1fr 2fr;
     column-gap: 10px;
     margin-top: 5px;
     margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .show-recipe {
+    h1 {
+      font-size: 25px;
+    }
   }
 
   .card_list {
-    width: 25vw;
+    width: 40vw;
   }
 }
 
