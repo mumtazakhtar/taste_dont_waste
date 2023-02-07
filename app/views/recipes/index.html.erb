@@ -74,7 +74,24 @@
         </div>
       </div>
 
+      <div class ="dietary">
+        <h2>Cooking Time</h2>
+        <%# NOT USABLE YET %>
+        <div class="check">
+         <form id="form" role="search">
+        <%= radio_button_tag(:cookingTime, "all") %>
+        <%= label_tag(:cookingTime_all, "Show all") %>
+        <%= radio_button_tag(:cookingTime, "30") %>
+        <%= label_tag(:cookingTime_30, "< 30 min") %>
+        <%= radio_button_tag(:cookingTime, "45") %>
+        <%= label_tag(:cookingTime_45, "< 45 min") %>
+        <%= radio_button_tag(:cookingTime, "60") %>
+        <%= label_tag(:cookingTime_60, "< 60 min") %>
 
+          <%= submit_tag "Search" %>
+        </form>
+        </div>
+      </div>
 
       <%# Pantry items / Inventory %><BR>
       <div class="your-list">
@@ -94,7 +111,7 @@
       </div>
     </div>
 
-  <%# Recipe Results page %>
+  <%# ---------Recipe Results page ----------%>
   <% if @recipes.empty? %>
     <div class="no-recipes">
       <img src="recipe1-not-found.png",>

@@ -12,7 +12,7 @@
             <% @recipes_favorite.each do |recipe| %>
               <div class="card-recipe">
                 <% if recipe.photo.key %>
-                  <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
+                  <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
                 <% else %>
                   <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
                 <% end %>
