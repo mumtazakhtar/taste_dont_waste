@@ -4,6 +4,11 @@
   display: flex;
   h2{
     margin-bottom: 16px;
+    font-size: 25px;
+  }
+
+  p{
+    color: $courgette;
   }
 }
 .show {
@@ -19,14 +24,15 @@
     font-size: 1.5rem;
     padding: 0.5rem;
   }
-  hr {
+
+  h1 {
     margin: 0px;
-  }
-  h2 {
+    margin-bottom: 10px;
     margin-top: 1rem;
+    font-family: $h1-font;
   }
 }
-.ingredient_list {
+.card_list {
   border: 1px solid rgb(213, 225, 213);
   box-shadow: rgb(213, 225, 213) ;
   padding: 12px;
@@ -39,4 +45,16 @@
   li {
     line-height: 0.9;
   }
+
+  .btn-nrm {
+    margin-top: 10px;
+  }
+}
+
+.recipe img {
+  border-radius: 4px;
+}
+
+.icon-show {
+  display: flex;
 }
