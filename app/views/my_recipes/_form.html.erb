@@ -1,10 +1,17 @@
-<div class="container-cookbook">
-<%= simple_form_for @my_recipe do |f| %>
-  <%= f.input :title %>
-  <%= f.input :ingredients, as: :text, :input_html => {:rows => 4 } %>
-  <%= f.input :description, as: :text, :input_html => { :cols => 5, :rows => 10 } %>
-  <%= f.input :cookingTime %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit(class: "btn-call") %>
-<% end %>
+<div class="container m-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6 border p-4">
+
+      <h2 class="text-center">Add your secret recipe!</h2>
+      <%= simple_form_for @my_recipe do |f| %>
+        <%= f.input :title %>
+        <%= f.input :ingredients, as: :text, :input_html => {:rows => 4 } %>
+        <%= f.input :description, as: :text, :input_html => { :cols => 5, :rows => 10 } %>
+        <%= f.input :cookingTime %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit(class: "btn-call") %>
+      <% end %>
+
+    </div>
+  </div>
 </div>
