@@ -1,6 +1,13 @@
 class Item < ApplicationRecord
   belongs_to :user
   validates :product, :stock, presence: true
+
+  def days
+    days = bestByDate - Date.today
+    return days.to_i
+  end
+
+
   # validates :product, :bestByDate, :stock, presence: true
 
   # Validations to think about later:

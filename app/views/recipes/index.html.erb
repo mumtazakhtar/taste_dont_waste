@@ -37,6 +37,29 @@
     </div>
     </div>
 
+          <%# Cooking time search %><BR>
+      <div class ="dietary">
+        <h2>Cooking Time</h2>
+        <%# NOT USABLE YET %>
+        <div class="check">
+          <form id="form" role="search">
+
+          <%= radio_button_tag(:cookingTime, "") %>
+          <%= label_tag(:cookingTime_all, "Show all") %>
+          <%= radio_button_tag(:cookingTime, "30") %>
+          <%= label_tag(:cookingTime_30, "< 30 min") %>
+          <%= radio_button_tag(:cookingTime, "45") %>
+          <%= label_tag(:cookingTime_45, "< 45 min") %>
+          <%= radio_button_tag(:cookingTime, "210") %>
+          <%= label_tag(:cookingTime_60, "> 60 min") %>
+
+            <%= submit_tag "Search" %>
+        </form>
+        </div>
+      </div>
+
+      <%# Dietary search %><BR>
+
       <div class ="dietary">
         <h2>Dietary restrictions</h2>
         <div class="check">
@@ -51,33 +74,22 @@
         </div>
       </div>
 
-      <div class ="dietary">
-        <h2>Cooking Time</h2>
-        <%# NOT USABLE YET %>
-        <div class="check">
-         <form id="form" role="search">
-        <%= radio_button_tag(:cookingTime, "all") %>
-        <%= label_tag(:cookingTime_all, "Show all") %>
-        <%= radio_button_tag(:cookingTime, "30") %>
-        <%= label_tag(:cookingTime_30, "< 30 min") %>
-        <%= radio_button_tag(:cookingTime, "45") %>
-        <%= label_tag(:cookingTime_45, "< 45 min") %>
-        <%= radio_button_tag(:cookingTime, "60") %>
-        <%= label_tag(:cookingTime_60, "< 60 min") %>
-
-          <%= submit_tag "Search" %>
-        </form>
 
 
-        </div>
-      </div>
-
-
+      <%# Pantry items / Inventory %><BR>
       <div class="your-list">
+      <% if @items.present? %>
         <h2>Your pantry items</h2>
           <div class="items">
+            <% @items.each do |item| %>
+              <div class="ingr">
+                <%= item.product %> (Stock: <%= item.stock %>)<BR>
+              </div>
+            <% end %>
+        <% else %>
             <p>You currently have no items added on your list</p>
             <p><strong>Click here</strong> to go to list</p>
+          <% end %>
           </div>
       </div>
     </div>
