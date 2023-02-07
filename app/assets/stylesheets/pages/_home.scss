@@ -64,3 +64,53 @@
   pointer-events: none;
   color: $eggplant;
 }
+
+
+
+
+@media screen and (max-width: 884px) {
+  .container-show {
+    margin-top: 40px;
+  }
+  .show {
+    grid-template-columns: 1fr 2fr;
+    column-gap: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .show-recipe {
+    h1 {
+      font-size: 25px;
+    }
+  }
+
+  .card_list {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .banner {
+   background-size: cover;
+   padding: 200px 0;
+
+   h1 {
+    font-size: 50px;
+   }
+
+   h2 {
+    font-size: 25px;
+    background: -webkit-linear-gradient( #7e2966, #074c0f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    text-shadow: 2px -1px 0px rgb(255, 249, 235);
+    margin-right: 10px;
+   }
+
+   .d-flex {
+    margin-right: 10px;
+   }
+  }
+}
