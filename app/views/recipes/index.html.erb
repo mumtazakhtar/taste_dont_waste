@@ -3,63 +3,69 @@
     <div class="search-card">
 
       <div data-controller="search-recipes">
-      <p id="filter">Enter your ingredients, comma seperated</p>
-      <form id="form" role="search">
-           <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Add more ingredients",
-              'data-search-recipes-target': "form"
+        <p id="filter">Enter your ingredients, comma seperated</p>
+        <form role="search">
+          <div id="form">
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Add more ingredients",
+                  'data-search-recipes-target': "form"
             %>
+
             <%= button_tag(type: "submit", class: "btn btn-default") do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <%# <%= button_tag(class: "btn btn-default") do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
-            <%# # Added two divs because it breaks without them. But I don't know why they work. %>
-            <%# </div><div> %>
+          </div>
 
-      <%# Cooking time search %><BR>
-      <div class ="dietary">
-        <h2>Cooking Time</h2>
-        <%# NOT USABLE YET %>
-        <div class="check">
+        <div data-search-recipes-target="ingredients">
+          <% if @search_ingredients.present? %>
+            <% newingredients = @search_ingredients.split(", ") %>
+              <div class="current-search">
+                <h2>Current ingredients</h2>
+                <% newingredients.each do |ingredient| %>
+                  <% next if ingredient.empty? %>
+                    <div class="current">
 
-          <%= radio_button_tag(:cooking_time, "30") %>
-          <%= label_tag(:cooking_time_30, "< 30 min") %>
-          <%= radio_button_tag(:cooking_time, "45") %>
-          <%= label_tag(:cooking_time_45, "< 45 min") %>
-          <%= radio_button_tag(:cooking_time, "60") %>
-          <%= label_tag(:cooking_time_60, "< 60 min") %>
-          <%= radio_button_tag(:cooking_time, "") %>
-          <%= label_tag(:cooking_time_all, "Show all") %>
-            <BR>
-            <%= submit_tag "Filter Search" %>
-        </form>
-        </div>
-      </div>
-
-
-  <div data-search-recipes-target="ingredients">
-    <% if @search_ingredients.present? %>
-    <% newingredients = @search_ingredients.split(", ") %>
-        <div class="current-search">
-          <h2>Current ingredients</h2>
-          <% newingredients.each do |ingredient| %>
-          <% next if ingredient.empty? %>
-            <div class="current">
-              <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
-              <div class="ingr">
-                 <p><%= ingredient.capitalize %></p>
-                <div data-search-recipes-target="ingredientlist" data-ingredient=<%="#{ingredient.downcase}"%>><i class="fa-solid fa-x"></i></div>
+                      <%# <%= button_tag(class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+                      <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+                      <div class="ingr">
+                        <p><%= ingredient.capitalize %></p>
+                        <div data-search-recipes-target="ingredientlist" data-ingredient=<%="#{ingredient.downcase}"%>>
+                          <i class="fa-solid fa-x"></i>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
               </div>
-              <% end %>
-            </div>
           <% end %>
         </div>
-    <% end %>
-    </div>
-    </div>
+
+          <%# Cooking time search %>
+          <div class="dietary">
+            <h2>Cooking Time</h2>
+            <%# NOT USABLE YET %>
+            <div class="check">
+              <%= radio_button_tag(:cooking_time, "30") %>
+              <%= label_tag(:cooking_time_30, "< 30 min") %>
+              <%= radio_button_tag(:cooking_time, "45") %>
+              <%= label_tag(:cooking_time_45, "< 45 min") %>
+              <%= radio_button_tag(:cooking_time, "60") %>
+              <%= label_tag(:cooking_time_60, "< 60 min") %>
+              <%= radio_button_tag(:cooking_time, "1000") %>
+              <%= label_tag(:cooking_time_all, "Show all") %>
+              <BR>
+              <%= submit_tag "Filter Search" %>
+            </div>
+          </div>
+        </form>
 
 
+
+      </div>
 
       <%# Dietary search %><BR>
 
