@@ -17,7 +17,7 @@
 }
 
 .btn-nrm {
-  color: $salad;
+  color: $courgette;
   border: 1px solid $salad;
   padding: 8px 24px;
   border-radius: 50px;
@@ -27,6 +27,7 @@
   text-decoration: none;
   margin-bottom: 8px;
   max-height: 45px;
+  //max-width: 100%;
 }
 
 .btn-nrm:hover {

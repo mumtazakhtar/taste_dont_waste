@@ -1,17 +1,26 @@
 .container-show {
-  margin-top: 34px;
+  margin-top: 19px;
   color: $eggplant;
   display: flex;
+
   h2{
     margin-bottom: 16px;
+    font-size: 25px;
+  }
+
+  p{
+    color: $eggplant;
+    text-align: center;
+    //background-color: lightcyan;
   }
 }
+
 .show {
   display: grid;
-  grid-template-columns: 0.7fr 3fr;
+  grid-template-columns: 0.7fr 2.5fr;
   flex-grow: 2;
-  padding-left: 28px;
-  column-gap: 40px;
+  padding-left: 0px;
+  column-gap: 20px;
 }
 .show-recipe {
   margin-left: 38px;
@@ -19,24 +28,135 @@
     font-size: 1.5rem;
     padding: 0.5rem;
   }
-  hr {
+
+  h1 {
     margin: 0px;
-  }
-  h2 {
+    margin-bottom: 10px;
     margin-top: 1rem;
+    font-family: $h1-font;
+    font-size: 35px;
   }
 }
-.ingredient_list {
-  border: 1px solid rgb(213, 225, 213);
-  box-shadow: rgb(213, 225, 213) ;
-  padding: 12px;
+
+.card-list {
   position: sticky;
-  top: 0;
+  top: 40px;
+  border: 1px solid rgb(213, 225, 213);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding-right: 12px;
+  padding-left: 5px;
+  margin-left: 0px;
+  padding-top: 10px;
+  overflow-y: scroll;
+  max-height: 80vh;
+
+
+
   h2 {
     text-align: center;
+    color: $squash;
     margin-bottom: 20px;
+    //border: 1px solid $eggplant;
+    border-radius: 4px;
+    background-color: $courgette;
+    box-shadow: 0 0 10px rgba(66, 114, 3, 0.764);
+    font-size: 21px;
   }
+
   li {
     line-height: 0.9;
+    //position: sticky;
+    //top: 0;
   }
+
+  .list_ingredients {
+    margin-bottom: 40px;
+    position: sticky;
+    top: 0;
+  }
+
+  p i {
+    font-size: 15px;
+  }
+}
+
+.recipe {
+
+  img {
+    border-radius: 4px;
+  }
+
+  h1 {
+    display: flex;
+  }
+
+  li {
+    line-height: 2;
+  }
+
+  .btn-nrm {
+    margin-top: 10px;
+    width: fit-content(20em);
+  }
+}
+
+.icon-show {
+  display: flex;
+}
+
+
+@media screen and (max-width: 884px) {
+  .container-show {
+    margin-top: 40px;
+  }
+  .show {
+    grid-template-columns: 1fr 2fr;
+    column-gap: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .show-recipe {
+    h1 {
+      font-size: 25px;
+    }
+  }
+
+  .card_list {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .container-show {
+    margin-top: 40px;
+  }
+  .show {
+    column-gap: 5px;
+    margin-top: 5px;
+  }
+
+  .show-recipe {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .card_list {
+    width: 30vw;
+    margin-left: 0px;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
 }
