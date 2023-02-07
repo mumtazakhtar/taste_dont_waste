@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = policy_scope(Item)
     # @items = Item.find_by(user_id: user.id).all
-    @items = Item.all
+    # @items = Item.all
     # add a sort by function
   end
 

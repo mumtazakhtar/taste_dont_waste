@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
 
   # Search by ingredients and title for homepage and recipes index
   pg_search_scope :search_by_everything,
-                  against: %i[ingredients title],
+                  against: %i[ingredients title cookingTime],
                   using: {
                     tsearch:
                     { prefix: true }
