@@ -15,18 +15,17 @@ class RecipesController < ApplicationController
       @recipes = Recipe.search_by_everything(params[:query])
     end
 
-    if params[:cookingTime].present?
-      case params[:cookingTime]
-      when "30" then @recipes = Recipe.where(cookingTime: 0..31)
-      when "45" then @recipes = Recipe.where(cookingTime: 0..46)
-      when "60" then @recipes = Recipe.where(cookingTime: 0..61)
+    if params[:cooking_time].present?
+      case params[:cooking_time]
+      when "30" then @recipes = Recipe.short_time
+      when "45" then @recipes = Recipe.medium_time
+      when "60" then @recipes = Recipe.long_time
       else @recipes = Recipe.all
-      # else @recipes = Recipe.search_by_cookingtime(params[:cookingTime])
+      # else @recipes = Recipe.search_by_cooking_time(params[:cooking_time])
       end
     end
 
     @items = policy_scope(Item)
-
   end
 
   def show
@@ -47,14 +46,4 @@ class RecipesController < ApplicationController
     redirect_back_or_to 'fallback_location: root_path', alert: "Removed recipe from your cookbook."
   end
 
-  private
-
-  # def short_time
-  #   @recipes = Recipe.all
-  #   shorttime_recipes = []
-  #   @recipes.each do |recipe|
-  #     shorttime_recipes.push(recipe) if recipe.cookingTime <= 30
-  #   end
-  #   return shorttime_recipes
-  # end
 end

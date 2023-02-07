@@ -48,7 +48,7 @@ recipe_ids.each do |recipe_id|
   file = URI.open(image)
 
   # create a new recipe and fill it with the api data
-  recipe = Recipe.new(title: title, ingredients: ingredients, description: instruction_steps, cookingTime: readyInMinutes)
+  recipe = Recipe.new(title: title, ingredients: ingredients, description: instruction_steps, cooking_time: readyInMinutes)
   recipe.photo.attach(io: file, filename: "#{title}.jpg", content_type: "image/jpg")
   recipe.save
   puts "Created recipe ##{recipe_id}: #{title}."
