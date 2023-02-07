@@ -130,7 +130,7 @@
               <div class="card-recipe-infos pt-2 px-3">
                 <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
-                <div class="card-recipe card-recipe-quickview"  data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
+                <div class="card-recipe card-recipe-quickview" title="Quick view the recipe" data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
                   <i class="fa-solid fa-expand"></i>
                 </div>
                 <% if user_signed_in? %>
