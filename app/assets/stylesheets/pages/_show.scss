@@ -1,5 +1,5 @@
 .container-show {
-  margin-top: 34px;
+  margin-top: 19px;
   color: $eggplant;
   display: flex;
   h2{
@@ -9,14 +9,15 @@
 
   p{
     color: $courgette;
+    text-align: center;
   }
 }
 .show {
   display: grid;
-  grid-template-columns: 0.7fr 3fr;
+  grid-template-columns: 0.7fr 2.5fr;
   flex-grow: 2;
-  padding-left: 28px;
-  column-gap: 40px;
+  padding-left: 0px;
+  column-gap: 20px;
 }
 .show-recipe {
   margin-left: 38px;
@@ -34,25 +35,49 @@
 }
 .card_list {
   border: 1px solid rgb(213, 225, 213);
-  box-shadow: rgb(213, 225, 213) ;
-  padding: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding-right: 12px;
   position: sticky;
   top: 0;
+  padding-left: 5px;
+  margin-left: 0px;
+  padding-top: 10px;
+
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    //border: 1px solid $eggplant;
+    border-radius: 4px;
+    background-color: $salad;
   }
   li {
     line-height: 0.9;
   }
 
-  .btn-nrm {
-    margin-top: 10px;
+
+  .list_ingredients {
+    margin-bottom: 40px;
   }
 }
 
-.recipe img {
-  border-radius: 4px;
+.recipe {
+
+  img {
+    border-radius: 4px;
+  }
+
+  h1 {
+    display: flex;
+  }
+
+  li {
+    line-height: 2;
+  }
+
+  .btn-nrm {
+    margin-top: 10px;
+    width: fit-content(20em);
+  }
 }
 
 .icon-show {

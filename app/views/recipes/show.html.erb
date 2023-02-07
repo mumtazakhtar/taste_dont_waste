@@ -9,6 +9,7 @@
         <p><i class="fa-regular fa-clock"> <%= @recipe.cookingTime %></i> min</p>
       <h2>Servings</h2>
         <p>4 portions</p>
+        <div class="list_ingredients">
       <h2>Ingredients</h2>
       <% @ingredients.each do |ingredient| %>
         <% ingredient.uniq.each do |ing|%>
@@ -17,26 +18,12 @@
           </ul>
         <% end %>
       <% end %>
-      <%= link_to "Back to recipes", root_path, class:"btn-nrm" %>
+      </div>
     </div>
 
     <div class="show-recipe">
       <div class= "recipe">
-        <h1><%= @recipe.title %><% if user_signed_in? %>
-              <% if current_user.favorited?(@recipe) %>
-                <div class="card-recipe-heart">
-                  <%= link_to unfavorite_recipe_path(@recipe),  data: { turbo_method: "post" } do %>
-                    <h2><i class="fa-solid fa-heart"></i></h2>
-                      <% end %>
-                </div>
-              <% else %>
-                <div class="card-recipe-heart">
-                  <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: "post" } do %>
-                    <h2><i class="fa-regular fa-heart"></i></h2>
-                  <% end %>
-                </div>
-              <% end %>
-            <% end %></h1>
+        <h1><%= @recipe.title %></h1>
           <% if @recipe.photo.key %>
             <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
           <% end %>
@@ -69,6 +56,7 @@
           <% end %>
         </ol>
       </div>
+        <%= link_to "Back to recipes", root_path, class:"btn-nrm" %>
     </div>
   </div>
 </div>
