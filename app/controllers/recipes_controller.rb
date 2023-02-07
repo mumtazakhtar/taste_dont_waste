@@ -16,8 +16,15 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
     end
 
-    # if params[:cookingTime] == 60
-    #   # @recipes = Recipe.where(params[:cookingtime] > 60)
+    @items = policy_scope(Item)
+    # @items = Item.all
+
+    if params[:cookingTime].present?
+      @recipes = Recipe.search_by_cookingtime(params[:cookingTime])
+    # else
+    #   @recipes = Recipe.last
+    end
+
     #   # @recipes = Recipe.search_by_cookingtime
 
     # else
