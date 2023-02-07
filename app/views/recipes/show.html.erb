@@ -4,20 +4,20 @@
 
 <div class= "container-show">
   <div class="show">
-    <div class="card_list">
+    <div class="card-list">
       <h2>Cooking time</h2>
-        <p><i class="fa-regular fa-clock"> <%= @recipe.cookingTime %></i> min</p>
+      <p><i class="fa-regular fa-clock"> <%= @recipe.cookingTime %></i> min</p>
       <h2>Servings</h2>
-        <p>4 portions</p>
-        <div class="list_ingredients">
-      <h2>Ingredients</h2>
-      <% @ingredients.each do |ingredient| %>
-        <% ingredient.uniq.each do |ing|%>
-          <ul>
-            <li><%= ing.capitalize %></li>
-          </ul>
+      <p>4 portions</p>
+      <div class="list_ingredients">
+        <h2>Ingredients</h2>
+        <% @ingredients.each do |ingredient| %>
+          <% ingredient.uniq.each do |ing|%>
+            <ul>
+              <li><%= ing.capitalize %></li>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
       </div>
     </div>
 
