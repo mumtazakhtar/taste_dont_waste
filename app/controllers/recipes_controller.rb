@@ -8,28 +8,24 @@ class RecipesController < ApplicationController
   end
 
   def index
+    @recipes = Recipe.all
     @search_ingredients = params[:query]
+
     if params[:query].present?
       @recipes = Recipe.search_by_everything(params[:query])
-    else
-      # Do we want to display all recipes on the index recipe page?
-      @recipes = Recipe.all
+    end
+
+    if params[:cookingTime].present?
+      case params[:cookingTime]
+      when "30" then @recipes = Recipe.where(cookingTime: 0..31)
+      when "45" then @recipes = Recipe.where(cookingTime: 0..46)
+      when "60" then @recipes = Recipe.where(cookingTime: 0..61)
+      else @recipes = Recipe.all
+      # else @recipes = Recipe.search_by_cookingtime(params[:cookingTime])
+      end
     end
 
     @items = policy_scope(Item)
-    # @items = Item.all
-
-    if params[:cookingTime].present?
-      @recipes = Recipe.search_by_cookingtime(params[:cookingTime])
-    # else
-    #   @recipes = Recipe.last
-    end
-
-    #   # @recipes = Recipe.search_by_cookingtime
-
-    # else
-    #   @recipes = Recipe.all
-    # end
 
   end
 
@@ -50,4 +46,15 @@ class RecipesController < ApplicationController
     current_user.unfavorite(@recipe)
     redirect_back_or_to 'fallback_location: root_path', alert: "Removed recipe from your cookbook."
   end
+
+  private
+
+  # def short_time
+  #   @recipes = Recipe.all
+  #   shorttime_recipes = []
+  #   @recipes.each do |recipe|
+  #     shorttime_recipes.push(recipe) if recipe.cookingTime <= 30
+  #   end
+  #   return shorttime_recipes
+  # end
 end

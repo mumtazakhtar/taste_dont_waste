@@ -3,6 +3,10 @@ class Recipe < ApplicationRecord
   acts_as_favoritable
   validates :title, :ingredients, :description, :cookingTime, presence: true
 
+  scope :short_time, -> { where("cookingTime < 46") }
+  scope :medium_time, -> { where("cookingTime > 0 AND cookingTime < 46") }
+  scope :long_time, -> { where("cookingTime > 0 AND cookingTime < 61") }
+
   include PgSearch::Model
 
   # Search by ingredients and title for homepage and recipes index

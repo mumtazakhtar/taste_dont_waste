@@ -14,7 +14,29 @@
             <%= button_tag(type: "submit", class: "btn btn-default") do %>
             <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
-      </form>
+            <%# # Added two divs because it breaks without them. But I don't know why they work. %>
+            <%# </div><div> %>
+
+      <%# Cooking time search %><BR>
+      <div class ="dietary">
+        <h2>Cooking Time</h2>
+        <%# NOT USABLE YET %>
+        <div class="check">
+
+          <%= radio_button_tag(:cookingTime, "30") %>
+          <%= label_tag(:cookingTime_30, "< 30 min") %>
+          <%= radio_button_tag(:cookingTime, "45") %>
+          <%= label_tag(:cookingTime_45, "< 45 min") %>
+          <%= radio_button_tag(:cookingTime, "60") %>
+          <%= label_tag(:cookingTime_60, "< 60 min") %>
+          <%= radio_button_tag(:cookingTime, "") %>
+          <%= label_tag(:cookingTime_all, "Show all") %>
+            <BR>
+            <%= submit_tag "Filter Search" %>
+        </form>
+        </div>
+      </div>
+
 
   <div data-search-recipes-target="ingredients">
     <% if @search_ingredients.present? %>
@@ -37,26 +59,7 @@
     </div>
     </div>
 
-          <%# Cooking time search %><BR>
-      <div class ="dietary">
-        <h2>Cooking Time</h2>
-        <%# NOT USABLE YET %>
-        <div class="check">
-          <form id="form" role="search">
 
-          <%= radio_button_tag(:cookingTime, "") %>
-          <%= label_tag(:cookingTime_all, "Show all") %>
-          <%= radio_button_tag(:cookingTime, "30") %>
-          <%= label_tag(:cookingTime_30, "< 30 min") %>
-          <%= radio_button_tag(:cookingTime, "45") %>
-          <%= label_tag(:cookingTime_45, "< 45 min") %>
-          <%= radio_button_tag(:cookingTime, "210") %>
-          <%= label_tag(:cookingTime_60, "> 60 min") %>
-
-            <%= submit_tag "Search" %>
-        </form>
-        </div>
-      </div>
 
       <%# Dietary search %><BR>
 
@@ -73,7 +76,6 @@
           <label for="lactose-free"> Lactose free</label></div>
         </div>
       </div>
-
 
 
       <%# Pantry items / Inventory %><BR>
