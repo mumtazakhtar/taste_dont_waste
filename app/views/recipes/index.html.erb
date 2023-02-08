@@ -3,115 +3,103 @@
     <div class="search-card">
 
       <div data-controller="search-recipes">
-      <p id="filter">Enter your ingredients, comma seperated</p>
-      <form id="form" role="search">
-           <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Add more ingredients",
-              'data-search-recipes-target': "form"
+        <p id="filter">Enter your ingredients, comma seperated</p>
+        <form role="search">
+          <div id="form">
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Enter ingredients, with comma",
+                  'data-search-recipes-target': "form"
             %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <% end %>
-      </form>
 
-  <div data-search-recipes-target="ingredients">
-    <% if @search_ingredients.present? %>
-    <% newingredients = @search_ingredients.split(", ") %>
-        <div class="current-search">
-          <h2>Current ingredients</h2>
-          <% newingredients.each do |ingredient| %>
-          <% next if ingredient.empty? %>
-            <div class="current">
-              <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
-              <div class="ingr">
-                 <p><%= ingredient %></p>
-                <div data-search-recipes-target="ingredientlist"><i class="fa-solid fa-x"></i></div>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+
+            <%# <%= button_tag(class: "btn btn-default") do %>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            <% end %>
+          </div>
+
+        <div data-search-recipes-target="ingredients">
+          <% if @search_ingredients.present? %>
+            <% newingredients = @search_ingredients.split(", ") %>
+              <div class="current-search">
+                <h2>Current ingredients</h2>
+                <% newingredients.each do |ingredient| %>
+                  <% next if ingredient.empty? %>
+                    <div class="current">
+
+                      <%# <%= button_tag(class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+                      <%= button_tag(type: "submit", class: "btn btn-default", data: {action: "click->search-recipes#removeIngredient"}) do %>
+                      <div class="ingr">
+                        <p><%= ingredient.capitalize %></p>
+                        <div data-search-recipes-target="ingredientlist" data-ingredient=<%="#{ingredient.downcase}"%>>
+                          <i class="fa-solid fa-x"></i>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
               </div>
-              <% end %>
-            </div>
           <% end %>
         </div>
-    <% end %>
-    </div>
-    </div>
 
-          <%# Cooking time search %><BR>
-      <div class ="dietary">
-        <h2>Cooking Time</h2>
-        <%# NOT USABLE YET %>
-        <div class="check">
-          <form id="form" role="search">
-
-          <%= radio_button_tag(:cookingTime, "") %>
-          <%= label_tag(:cookingTime_all, "Show all") %>
-          <%= radio_button_tag(:cookingTime, "30") %>
-          <%= label_tag(:cookingTime_30, "< 30 min") %>
-          <%= radio_button_tag(:cookingTime, "45") %>
-          <%= label_tag(:cookingTime_45, "< 45 min") %>
-          <%= radio_button_tag(:cookingTime, "210") %>
-          <%= label_tag(:cookingTime_60, "> 60 min") %>
-
-            <%= submit_tag "Search" %>
+          <%# Cooking time search %>
+          <div class="dietary"><BR>
+            <h2>Cooking Time</h2>
+            <%# WORKS BUT --> would like to have them radiobutton stay checked after search results %>
+            <div class="check">
+              <%= radio_button_tag(:cooking_time, "30") %>
+              <%= label_tag(:cooking_time_30, "< 30 min") %>
+              <%= radio_button_tag(:cooking_time, "45") %>
+              <%= label_tag(:cooking_time_45, "< 45 min") %>
+              <%= radio_button_tag(:cooking_time, "60") %>
+              <%= label_tag(:cooking_time_60, "< 60 min") %>
+              <%= radio_button_tag(:cooking_time, "1000") %>
+              <%= label_tag(:cooking_time_all, "Show all") %>
+              <BR><BR>
+              <%= submit_tag "Filter Search" %>
+            </div>
+          </div>
         </form>
-        </div>
+
       </div>
 
       <%# Dietary search %><BR>
-
       <div class ="dietary">
         <h2>Dietary restrictions</h2>
         <div class="check">
           <div class="box"><input type="checkbox" id="vegan" name="vegan" value="Dietary">
-          <label for="vegan"> Vegan</label></div>
+            <label for="vegan"> Vegan</label></div>
           <div class="box"><input type="checkbox" id="vegetarian" name="vegetarian" value="Dietary">
-          <label for="vegetarian"> Vegetarian</label></div>
+            <label for="vegetarian"> Vegetarian</label></div>
           <div class="box"><input type="checkbox" id="gluten-free" name="gluten-free" value="Dietary">
-          <label for="gluten-free"> Gluten free</label></div>
+            <label for="gluten-free"> Gluten free</label></div>
           <div class="box"><input type="checkbox" id="lactose-free" name="lactose-free" value="Dietary">
-          <label for="lactose-free"> Lactose free</label></div>
-        </div>
-      </div>
-
-      <div class ="dietary">
-        <h2>Cooking Time</h2>
-        <%# NOT USABLE YET %>
-        <div class="check">
-         <form id="form" role="search">
-        <%= radio_button_tag(:cookingTime, "all") %>
-        <%= label_tag(:cookingTime_all, "Show all") %>
-        <%= radio_button_tag(:cookingTime, "30") %>
-        <%= label_tag(:cookingTime_30, "< 30 min") %>
-        <%= radio_button_tag(:cookingTime, "45") %>
-        <%= label_tag(:cookingTime_45, "< 45 min") %>
-        <%= radio_button_tag(:cookingTime, "60") %>
-        <%= label_tag(:cookingTime_60, "< 60 min") %>
-
-          <%= submit_tag "Search" %>
-        </form>
+            <label for="lactose-free"> Lactose free</label></div>
         </div>
       </div>
 
       <%# Pantry items / Inventory %><BR>
       <div class="your-list">
-      <% if @items.present? %>
-        <h2>Your pantry items</h2>
-          <div class="items">
-            <% @items.each do |item| %>
-              <div class="ingr">
-                <%= item.product %> (Stock: <%= item.stock %>)<BR>
-              </div>
-            <% end %>
+        <% if @items.present? %>
+          <h2>Your pantry items</h2>
+            <div class="items">
+              <% @items.each do |item| %>
+                <div class="ingr">
+                  <%= item.product %> (Stock: <%= item.stock %>)<BR>
+                </div>
+              <% end %>
+            </div>
         <% else %>
             <p>You currently have no items added on your list</p>
             <p><strong>Click here</strong> to go to list</p>
-          <% end %>
-          </div>
+        <% end %>
       </div>
     </div>
 
   <%# ---------Recipe Results page ----------%>
+  
   <% if @recipes.empty? %>
     <div class="no-recipes">
       <img src="recipe1-not-found.png",>
@@ -128,7 +116,7 @@
           <% end %>
 
               <div class="card-recipe-infos pt-2 px-3">
-                <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
+                <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                 <div class="card-recipe card-recipe-quickview" title="Quick view the recipe" data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
                   <i class="fa-solid fa-expand"></i>

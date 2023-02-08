@@ -6,6 +6,9 @@ require 'json'
 # Define your Spoonacular API key
 api_key = ENV['API_KEY']
 
+puts "Destroy all recipes"
+Recipe.destroy_all
+
 puts "Start creating recipes..."
 recipe_ids = []
 recipe_tags = ["dinner"]
@@ -60,7 +63,7 @@ recipe_ids.each do |recipe_id|
             title: title,
             ingredients: ingredients,
             description: instruction_steps,
-            cookingTime: ready_in_minutes,
+            cooking_time: ready_in_minutes,
             servings: servings,
             diets: diets,
             cuisines: cuisines

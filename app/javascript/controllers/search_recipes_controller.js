@@ -19,12 +19,23 @@ export default class extends Controller {
 
   removeIngredient(event) {
     // console.log(event.target.innerText);
-    const thisIngredient = event.target.innerText;
-    console.log(thisIngredient)
+    const thisIngredient = event.target.innerText.toLocaleLowerCase();
+    // console.log(thisIngredient)
+    // console.log(this.ingredientlistTargets[0].dataset.ingredient)
 
-    const oldURI = [this.formTarget.baseURI]
-    var newUri = `${oldURI}`.replace(`${thisIngredient}`, '');
-    console.log(newUri)
+    const oldURI = [this.formTarget.baseURI.toLocaleLowerCase()]
+    if (this.ingredientlistTargets.length === 1 ) {
+      var newUri = `${oldURI}`.replace(`${thisIngredient}`, '');
+      console.log("only one")
+    } else if (this.ingredientlistTargets[0].dataset.ingredient === thisIngredient ){
+      var newUri = `${oldURI}`.replace(`${thisIngredient}%2c+`, '');
+      console.log("first")
+    } else {
+      var newUri = `${oldURI}`.replace(`%2c+${thisIngredient}`, '');
+      console.log("middle")
+    }
+
+    // console.log(newUri)
     window.location.replace(newUri)
   }
 

@@ -8,29 +8,72 @@ class RecipesController < ApplicationController
   end
 
   def index
+    @recipes = Recipe.all
     @search_ingredients = params[:query]
-    if params[:query].present?
-      @recipes = Recipe.search_by_everything(params[:query])
-    else
-      # Do we want to display all recipes on the index recipe page?
-      @recipes = Recipe.all
+
+    if params[:query] || params[:cooking_time]
+      params[:cooking_time].to_i
+      if params[:query] && params[:cooking_time]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).search_by_everything(params[:query])
+        # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients like ?", "%#{params[:query]}%")
+      elsif params[:query]
+        # @recipes = Recipe.where("ingredients like ?", "%#{params[:query]}%")
+        @recipes = Recipe.search_by_everything(params[:query])
+      elsif params[:cooking_time]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time])
+      else
+        @recipes = Recipe.all
+      end
     end
 
-    @items = policy_scope(Item)
-    # @items = Item.all
+    # BIG MESS! TO BE CLEANED UP IN FINAL VERSION BUT PLEASE LEAVE HERE FOR NOW
+      # @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
+      # @recipes = Recipe.search_by_everything(params[:query]) if params[:query] # your pg_scope
 
-    if params[:cookingTime].present?
-      @recipes = Recipe.search_by_cookingtime(params[:cookingTime])
-    # else
-    #   @recipes = Recipe.last
-    end
-
-    #   # @recipes = Recipe.search_by_cookingtime
-
-    # else
-    #   @recipes = Recipe.all
+    # if params[:query] && params[:cooking_time]
+    #   @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
+    #   @recipes = Recipe.search_by_everything(params[:query]).where("cooking_time <= ?", params[:cooking_time].to_i) if params[:query] && params[:cooking_time]
     # end
 
+
+    # @recipes = @recipes.ingredients_search(params[:query]) if params[:query].present?
+    # @recipes = @recipes.ingredients_search(params[:cooking_time]) if params[:cooking_time].present?
+    # @recipes = @recipes.global_search(params[:query]) if params[:query] && params[:cooking_time].present?
+
+
+    # @name_recipes = []
+    # @time_recipes = []
+    # if params[:query].present?
+    #   @name_recipes << Recipe.search_by_everything(params[:query])
+    #   # @name_recipes << Recipe.where(ingredients: params[:query])
+    #   @recipes = []
+    #   (@recipes << @name_recipes).flatten
+    # end
+
+    # if params[:cooking_time].present?
+    #   if params[:query].present?
+    #     case params[:cooking_time]
+    #     when "30" then @time_recipes << Recipe.short_time
+    #     when "45" then @time_recipes << Recipe.medium_time
+    #     when "60" then @time_recipes << Recipe.long_time
+    #     when "120" then @time_recipes << Recipe.longest_time
+    #     end
+    #     @recipes.delete_if { |recipe| recipe != @time_recipes.any? }
+    #   else
+    #     @recipes = []
+    #     case params[:cooking_time]
+    #     when "30" then @time_recipes << Recipe.short_time
+    #     when "45" then @time_recipes << Recipe.medium_time
+    #     when "60" then @time_recipes << Recipe.long_time
+    #     when "120" then @time_recipes << Recipe.longest_time
+    #     end
+    #   end
+    #   (@recipes << @time_recipes).flatten
+    # end
+
+    # @recipes.to_a.flatten!
+
+    @items = policy_scope(Item)
   end
 
   def show
@@ -50,4 +93,5 @@ class RecipesController < ApplicationController
     current_user.unfavorite(@recipe)
     redirect_back_or_to 'fallback_location: root_path', alert: "Removed recipe from your cookbook."
   end
+
 end

@@ -24,21 +24,21 @@ recipe1 = Recipe.new(
   title: "Tomato Soup",
   ingredients: "Tomatoes, Onions, Broth, Water",
   description: "Put everything together and it will become a soup if you boil long enough",
-  cookingTime: 15
+  cooking_time: 15
 )
 
 recipe2 = Recipe.new(
   title: "Pizza Funghi",
   ingredients: "Tomatoes, Cheese, Champignons, Pizza, Oregano",
   description: "Put the ingredients on the pizza, oven it for 17 minutes and voila. Or order something.",
-  cookingTime: 20
+  cooking_time: 20
 )
 
 recipe3 = Recipe.new(
   title: "Risotto",
   ingredients: "Risotto Rice, Broth, Aspergus, Peas, Butter, Zucchini",
   description: "Slowly add the risotto rice, bit by bit, to boiling water. Meanwhile bake the veggies. Add togeter.",
-  cookingTime: 30
+  cooking_time: 30
 )
 
 photo = File.open(Rails.root.join('app/assets/images/1.jpg'))
@@ -57,7 +57,7 @@ my_recipe1 = MyRecipe.new(
   title: "Tomato Soup",
   ingredients: "Tomatoes, Onions, Broth, Water",
   description: "Put everything together and it will become a soup if you boil long enough",
-  cookingTime: 15,
+  cooking_time: 15,
   user: newuser
 )
 
@@ -65,7 +65,7 @@ my_recipe2 = MyRecipe.new(
   title: "Pizza Funghi",
   ingredients: "Tomatoes, Cheese, Champignons, Pizza, Oregano",
   description: "Put the ingredients on the pizza, oven it for 17 minutes and voila. Or order something.",
-  cookingTime: 20,
+  cooking_time: 20,
   user: newuser
 )
 
@@ -73,7 +73,7 @@ my_recipe3 = MyRecipe.new(
   title: "Risotto",
   ingredients: "Risotto Rice, Broth, Aspergus, Peas, Butter, Zucchini",
   description: "Slowly add the risotto rice, bit by bit, to boiling water. Meanwhile bake the veggies. Add togeter.",
-  cookingTime: 30,
+  cooking_time: 30,
   user: newuser
 )
 

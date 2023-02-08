@@ -8,7 +8,7 @@
       width: 300, height: 200, crop: :fill) %>
     <h2><%= link_to recipe.title, my_recipe_path(recipe) %></h2>
     <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
-    <strong>Cooking Time:</strong> <%= recipe.cookingTime %> minutes<BR></p>
+    <strong>Cooking Time:</strong> <%= recipe.cooking_time %> minutes<BR></p>
     <p><strong>Description:</strong><BR>
     <%= recipe.description %><BR></p>
     <%= link_to "Edit Recipe", edit_my_recipe_path(recipe), class:"btn btn-dark" %>

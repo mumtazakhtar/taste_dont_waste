@@ -17,7 +17,7 @@
                   <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
                 <% end %>
                 <div class="card-recipe-infos pt-2 px-3">
-                  <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
+                  <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                 	  <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                   <% if user_signed_in? %>
                     <% if current_user.favorited?(recipe) %>
@@ -78,7 +78,7 @@
                       <%# <%= link_to "like", toggle_favorite_recipe_path(recipe), remote: true, method: :post %>
                       <i class="fa-regular fa-heart card-recipe-heart"></i>
                         <div class="card-recipe-infos pt-2 px-3">
-                        <h2><i class="fa-regular fa-clock"> <%= recipe.cookingTime %></i> min</h2>
+                        <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                           <h2><%=link_to recipe.title, my_recipe_path(recipe) %></h2>
                           <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
                           <%= link_to my_recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?"} do %>
