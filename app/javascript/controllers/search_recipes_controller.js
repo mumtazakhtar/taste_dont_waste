@@ -24,6 +24,8 @@ export default class extends Controller {
     // console.log(this.ingredientlistTargets[0].dataset.ingredient)
 
     const oldURI = [this.formTarget.baseURI.toLocaleLowerCase()]
+    // console.log(oldURI)
+
     if (this.ingredientlistTargets.length === 1 ) {
       var newUri = `${oldURI}`.replace(`${thisIngredient}`, '');
       console.log("only one")

@@ -11,18 +11,27 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     @search_ingredients = params[:query]
 
-    # if params[:query].empty?
-    #   @recipes = Recipe.all
-    # end
-
-    if params[:query] || params[:cooking_time]
+    # For search function for ingredients and cooking time
+    if params[:query] || params[:cooking_time] || params[:diets]
       params[:cooking_time].to_i
-      if params[:query] && params[:cooking_time]
+      # If all three are present
+      if params[:query] && params[:cooking_time] && params[:diets]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ilike ?", "%#{params[:query]}%").where("diets like ?", "%#{params[:diets]}%")
+      # If query (ingredients) and cooking time are present
+      elsif params[:query] && params[:cooking_time]
         @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ilike ?", "%#{params[:query]}%")
+      # if query (ingredients) and diet are present
+      elsif params[:diets] && params[:query]
+        @recipes = Recipe.where("diets like ?", "%#{params[:diets]}%").where("ingredients ilike ?", "%#{params[:query]}%")
+      # if diet and cooking time are present
+      elsif params[:diets] && params[:cooking_time]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("diets like ?", "%#{params[:diets]}%")
       elsif params[:query]
         @recipes = Recipe.where("ingredients ilike ?", "%#{params[:query]}%")
       elsif params[:cooking_time]
         @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time])
+      elsif params[:diets]
+        @recipes = Recipe.where("diets like ?", "%#{params[:diets]}%")
       else
         @recipes = Recipe.all
       end
