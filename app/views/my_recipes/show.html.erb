@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@my_recipe.title} | Taste, don't waste" %>
+<% content_for :meta_description, @my_recipe.description %>
+<% content_for :meta_image, cl_image_path(@my_recipe.photo.key) if @my_recipe.photo.attached? %>
+
 <div class= "container_my_recipe">
   <div class="show_my_recipe">
     <div class="my_recipe">
