@@ -11,10 +11,17 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="search-recipes"
 export default class extends Controller {
 
-  static targets = [ "form", "ingredients", "ingredient", "ingredientlist", "array" ]
+  static targets = [ "form", "ingredients", "ingredient", "ingredientlist", "array", "radioButtons"]
   static values = ["ingredient"]
 
   connect() {
+  }
+
+  stayChecked(event){
+    console.log(event)
+    console.log(event.target)
+    console.log(event.target.checked)
+    //target: input#cooking_time_45 when clicked gives checked true
   }
 
   removeIngredient(event) {

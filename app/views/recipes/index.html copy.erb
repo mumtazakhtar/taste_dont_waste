@@ -47,18 +47,30 @@
           <%# Cooking time search %>
           <div class="dietary"><BR>
             <h2>Cooking Time</h2>
-            <div class="check">
-              <%= radio_button_tag(:cooking_time, "1000", true) %>
-              <%= label_tag(:cooking_time_all, "All") %>
-              <%= radio_button_tag(:cooking_time, "30", params[:cooking_time] == '30') %>
-              <%= label_tag(:cooking_time_30, "<30 min") %>
-              <%= radio_button_tag(:cooking_time, "45", params[:cooking_time] == '45') %>
-              <%= label_tag(:cooking_time_30, "<45 min") %>
-              <%= radio_button_tag(:cooking_time, "60", params[:cooking_time] == '60') %>
-              <%= label_tag(:cooking_time_30, "<60 min") %>
+            <%# WORKS BUT --> would like to have them radiobutton stay checked after search results %>
+            <div class="check" data-search-recipes-target="radioButtons" data-action="click->search-recipes#stayChecked">
+              <label class='checkbox-inline'>
+              <%= radio_button_tag :cooking_time, "1000", true %>All</label>
+              <label class='checkbox-inline'>
+              <%= radio_button_tag :cooking_time, "30", params[:cooking_time] == '30' %>30min</label>
+              <label class='checkbox-inline'>
+              <%= radio_button_tag :cooking_time, "45", params[:cooking_time] == '45' %>45 min</label>
+              <label class='checkbox-inline'>
+              <%= radio_button_tag :cooking_time, "60", params[:cooking_time] == '60' %>60 min</label>
+
+
+              <%= radio_button_tag(:cooking_time, "30", checked: "30") %> %>
+              <%= radio_button_tag(:cooking_time, "30", checked: "30") %>
+              <%= label_tag(:cooking_time_30, "< 30 min") %>
+              <%= radio_button_tag(:cooking_time, :cooking_time, "45") %>
+              <%= label_tag(:cooking_time_45, "< 45 min") %>
+              <%# <%= radio_button_tag(:cooking_time, "60") %>
+              <%= radio_button_tag(:cooking_time, "60", checked: "60") %>
+              <%= label_tag(:cooking_time_60, "< 60 min") %>
+              <%= radio_button_tag(:cooking_time, "1000", checked: "1000") %>
+              <%= label_tag(:cooking_time_all, "Show all")
             </div>
           </div>
-
 
           <%# Dietary search %><BR>
           <div class ="dietary">
