@@ -6,8 +6,8 @@ require 'json'
 # Define your Spoonacular API key
 api_key = ENV['API_KEY']
 
-puts "Destroy all recipes"
-Recipe.destroy_all
+# puts "Destroy all recipes"
+# Recipe.destroy_all
 
 puts "Start creating recipes..."
 recipe_ids = []
