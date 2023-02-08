@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     # @items = Item.order(bestByDate: :asc)
     @recipes_favorite = current_user.all_favorited
     @recipes_created = current_user.my_recipes
-    # @days = DateTime.now - Date.bestByDate
+    @item = Item.new
   end
 
 end

@@ -1,34 +1,54 @@
-<% content_for :meta_title, "#{@recipe.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title, "#{@recipe.title} | Taste, don't waste" %>
 <% content_for :meta_description, @recipe.description %>
 <% content_for :meta_image, cl_image_path(@recipe.photo.key) if @recipe.photo.attached? %>
 
 <div class= "container-show">
   <div class="show">
-    <div class="ingredient_list">
-          <h2>Ingredients</h2>
-      <% @ingredients.each do |ingredient| %>
-        <% ingredient.uniq.each do |ing|%>
-          <ul>
-            <li><%= ing.capitalize %></li>
-          </ul>
+    <div class="card-list">
+      <h2>Cooking time</h2>
+      <p><i class="fa-regular fa-clock"> <%= @recipe.cookingTime %></i> min</p>
+      <h2>Servings</h2>
+      <p>4 portions</p>
+      <div class="list_ingredients">
+        <h2>Ingredients</h2>
+        <% @ingredients.each do |ingredient| %>
+          <% ingredient.uniq.each do |ing|%>
+            <ul>
+              <li><%= ing.capitalize %></li>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
 
     <div class="show-recipe">
       <div class= "recipe">
-        <h2><%= @recipe.title %></h2>
-        <% if @recipe.photo.key %>
-          <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
-        <% end %>
-        <div>
-        <%= link_to("https://wa.me/?text=Hey%20there%21%0AI%20just%20found%20an%20amazing%20recipe%20for%20#{@recipe.title}%20on%20https%3A%2F%2Fwww.tastedontwaste.me%2Frecipes%2F#{@recipe.id}%20-%20do%20you%20wanna%20cook%20this%20tonight%20with%20me%3F%20%F0%9F%A7%91%E2%80%8D%F0%9F%8D%B3") do %>
+        <h1><%= @recipe.title %></h1>
+          <% if @recipe.photo.key %>
+            <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
+          <% end %>
+        <div class="icon-show">
+          <%= link_to("https://wa.me/?text=Hey%20there%21%0AI%20just%20found%20an%20amazing%20recipe%20for%20#{@recipe.title}%20on%20https%3A%2F%2Fwww.tastedontwaste.me%2Frecipes%2F#{@recipe.id}%20-%20do%20you%20wanna%20cook%20this%20tonight%20with%20me%3F%20%F0%9F%A7%91%E2%80%8D%F0%9F%8D%B3") do %>
         	  <i class="fa-brands fa-whatsapp"></i>
-        <% end %>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-instagram"></i>
+          <% end %>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-instagram"></i>
+            <% if user_signed_in? %>
+              <% if current_user.favorited?(@recipe) %>
+                <div class="card-recipe-heart">
+                  <%= link_to unfavorite_recipe_path(@recipe),  data: { turbo_method: "post" } do %>
+                    <h2><i class="fa-solid fa-heart"></i></h2>
+                      <% end %>
+                </div>
+              <% else %>
+                <div class="card-recipe-heart">
+                  <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: "post" } do %>
+                    <h2><i class="fa-regular fa-heart"></i></h2>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
         </div>
-        <hr>
         <h2>Instructions</h2>
         <ol>
           <% @instructions.each do |instruction| %>
@@ -36,7 +56,7 @@
           <% end %>
         </ol>
       </div>
+        <%= link_to "Back to recipes", root_path, class:"btn-nrm" %>
     </div>
   </div>
 </div>
-

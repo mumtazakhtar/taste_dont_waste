@@ -64,3 +64,54 @@
   pointer-events: none;
   color: $eggplant;
 }
+
+
+
+
+@media screen and (max-width: 884px) {
+  .banner {
+    background-size: cover;
+    padding: 210px 0;
+
+    h1 {
+     font-size: 70px;
+    }
+
+    h2 {
+     font-size: 25px;
+     background: -webkit-linear-gradient( #7e2966, #074c0f);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+     text-shadow: 2px -1px 0px rgb(255, 249, 235);
+     margin-right: 10px;
+    }
+
+    .d-flex {
+     margin-right: 10px;
+    }
+   }
+}
+
+@media screen and (max-width: 428px) {
+  .banner {
+   background-size: cover;
+   padding: 200px 0;
+
+   h1 {
+    font-size: 50px;
+   }
+
+   h2 {
+    font-size: 25px;
+    background: -webkit-linear-gradient( #7e2966, #074c0f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    text-shadow: 2px -1px 0px rgb(255, 249, 235);
+    margin-right: 10px;
+   }
+
+   .d-flex {
+    margin-right: 10px;
+   }
+  }
+}

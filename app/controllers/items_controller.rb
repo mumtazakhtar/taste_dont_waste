@@ -33,8 +33,10 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
+      @item.save
       redirect_to cookbook_path, notice: 'Updated succesfully'
     else
+      raise
       render :edit, status: unprocessable_entity
     end
   end

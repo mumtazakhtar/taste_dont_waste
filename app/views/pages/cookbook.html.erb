@@ -12,7 +12,7 @@
             <% @recipes_favorite.each do |recipe| %>
               <div class="card-recipe">
                 <% if recipe.photo.key %>
-                  <%= link_to cl_image_tag(recipe.photo.key), my_recipe_path(recipe), height: 300, width: 400, crop: :fill %>
+                  <%= link_to cl_image_tag(recipe.photo.key), recipe_path(recipe), height: 300, width: 400, crop: :fill %>
                 <% else %>
                   <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
                 <% end %>
@@ -100,6 +100,7 @@
                 <tr>
                   <th>Product</th>
                   <th>Best by</th>
+                  <th>Days left</th>
                   <th>Stock</th>
                   <th>Delete</th>
                 </tr>
@@ -108,7 +109,8 @@
                   <td><button type="button" class="btn-nrm" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>">
                   <%= item.product %>
                   </button></td>
-                    <td><%= item.bestByDate %></td>
+                    <td><%= item.bestByDate.strftime("%d/%m/%Y") %></td>
+                    <td><%= item.days %></td>
                     <td><%= item.stock %></td>
                     <td><%= link_to item_path(item), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this product?"} do %>
                     <i class="fa-regular fa-trash-can"></i>
@@ -129,7 +131,23 @@
                 <% end %>
                 </tr>
                 </table>
-              <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-nrm" %><br>
+               <button type="button" class="btn-nrm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Add an item to the inventory list
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add item to inventory</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                      <div class="modal-body">
+                        <%= render 'items/form', item: @item %>
+                        <%# <p>hello i am a modal form</p> %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
         </div>
       </div>
     </div>
