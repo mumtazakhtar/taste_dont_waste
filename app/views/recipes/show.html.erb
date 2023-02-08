@@ -14,12 +14,10 @@
       <p><%= @recipe.servings %> portions</p>
       <div class="list_ingredients">
         <h2>Ingredients</h2>
-        <% @ingredients.each do |ingredient| %>
-          <% ingredient.uniq.each do |ing|%>
+        <% @ingredients.uniq.each do |ingredient| %>
             <ul>
-              <li><%= ing.capitalize %></li>
+              <li><%= ingredient.capitalize %></li>
             </ul>
-          <% end %>
         <% end %>
       </div>
     </div>

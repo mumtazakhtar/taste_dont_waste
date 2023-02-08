@@ -148,10 +148,8 @@
                 <p><strong>Ingredients:</strong> <%=  %><BR>
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
-                <% @ingredients.each do |ingredient| %>
-                  <% ingredient.uniq.each do |ing|%>
-                      <%= ing.capitalize %>,
-                  <% end %>
+                <% @ingredients.uniq.each do |ingredient| %>
+                  <%= ingredient.capitalize %>,
                 <% end %>
 
                 <!-- Modal for pop up recipe -->
