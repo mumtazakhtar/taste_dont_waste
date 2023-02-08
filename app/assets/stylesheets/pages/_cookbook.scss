@@ -107,6 +107,18 @@ th td {
         max-width: 100%;
       }
     }
-
   }
+  .divbtn {
+    display: grid;
+    row-gap: 5px;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: center;
+  }
+
+  .hide-btn {
+    .btn-nrm {
+    display: none;
+  }
+}
 }
