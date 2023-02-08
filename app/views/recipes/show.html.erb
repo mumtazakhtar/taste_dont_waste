@@ -7,8 +7,11 @@
     <div class="card-list">
       <h2>Cooking time</h2>
       <p><i class="fa-regular fa-clock"> <%= @recipe.cooking_time %></i> min</p>
+      <div class="prep-time">
+      <p>(Includes preparation and waiting time)</p>
+      </div>
       <h2>Servings</h2>
-      <p>4 portions</p>
+      <p><%= @recipe.servings %> portions</p>
       <div class="list_ingredients">
         <h2>Ingredients</h2>
         <% @ingredients.each do |ingredient| %>
