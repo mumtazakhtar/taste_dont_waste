@@ -14,18 +14,19 @@
       </div>
     </div>
     <div class= "recipe_info">
-      <h2><%= @my_recipe.title %></h2>
+      <h1><%= @my_recipe.title %></h1>
       <hr>
       <div>
-        <h3>Ingredients</h2>
+        <h2>Ingredients</h2>
         <p><%= @my_recipe.ingredients %></p>
       </div>
       <div class="instruction">
-        <h3>Instructions</h2>
+        <h2>Instructions</h2>
         <p><%= @my_recipe.description %></p>
       </div>
-      <%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn-back" %>
-      <%= link_to "Back to your cookbook", cookbook_path, class:"btn-back" %>
+
+      <%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn-call" %><br>
+      <%= link_to "Back to cookbook", cookbook_path, class:"btn-call" %>
     </div>
   </div>
 </div>

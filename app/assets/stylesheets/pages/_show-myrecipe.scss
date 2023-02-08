@@ -5,18 +5,41 @@
 .show_my_recipe {
   margin-top: 38px;
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 2fr;
   flex-grow: 2;
   padding-left: 28px;
-  column-gap: 40px;
+  column-gap: 30px;
+  margin-left: 20px;
+  margin-right: 200px;
+
   img {
     border-radius: 4px;
   }
-}
+  h2 {
+    text-align: center;
+    font-family: $h2-font;
+    font-size: 20px;
+    color: $squash;
+    background-color: $courgette;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(66, 114, 3, 0.764);
+  }
+
+  p {
+    text-align: center;
+    color: $eggplant;
+  }
+
 .recipe_info {
-  h2{
-    color: $courgette;
+  //margin-right: 100px;
+  h1{
+    font-family: $h1-font;
+    font-size: 40px;
+    color: $eggplant;
     padding: 8px;
+    text-align: center;
+  }
+
   }
 }
 .instruction {
