@@ -34,3 +34,10 @@
 .footer .footer-copyright {
   opacity: 0.50;
 }
+
+
+@media screen and (max-width: 884px) {
+  .footer {
+    bottom: -320px
+  }
+}
