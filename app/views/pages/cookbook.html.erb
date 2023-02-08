@@ -1,10 +1,12 @@
 
-<div class="container">
+<div class="container-all">
   <h1>My saved recipes</h1>
   <hr>
-    <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-back" %>
-    <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-back" %>
-    <%= link_to "Back to the search page", root_path, class:"btn-back" %>
+  <div class="divbtn">
+    <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-call" %>
+    <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-call" %>
+    <%= link_to "Back to the search page", root_path, class:"btn-call" %>
+  </div>
     <div class="container-cookbook">
       <div class="index-layout-cookbook">
         <div class="card-holder">

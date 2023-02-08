@@ -1,9 +1,18 @@
+.container-all {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .container-cookbook {
   display: flex;
   // margin: 34px;
   margin-top: 10px;
 }
 
+h1 {
+  font-family: $h1-font;
+  color: $courgette
+}
 .container-form {
   margin: 34px;
 }
@@ -24,11 +33,80 @@
 }
 
 .table {
-border: 1px solid;
+border: 1px solid $courgette;
+border-radius: 4px;
 width: 100%;
-}
 
 th td {
   text-align: left;
-  border: 1px solid;
+  border: 1px solid $courgette;
+  }
+
+ th {
+  color: $courgette;
+ }
+
+ td {
+  color: $courgette;
+ }
+}
+
+
+
+@media screen and (max-width: 884px) {
+  .divbtn {
+    margin-top: 20px;
+    align-items: center;
+  }
+  .container-all {
+    margin-top: 40px;
+    margin-left:  5px;
+    margin-right: 5px;
+  }
+
+  .container-cookbook {
+    margin-top: 0px;
+  }
+  .index-layout-cookbook {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+  }
+
+  .inventory  {
+    margin: 5px;
+  }
+
+}
+
+@media screen and (max-width: 428px) {
+  .container-all {
+    padding-left: 5px;
+    padding-right: 5px;
+    object-fit: contain;
+  }
+
+  .index-layout-cookbook {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1px;
+    row-gap: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .card-holder {
+    padding-left: 1px;
+    padding-right: 1px;
+
+    .card-recipe {
+      padding-left: 1px;
+      padding-right: 1px;
+
+      img a {
+        max-height: 75%;
+        max-width: 100%;
+      }
+    }
+
+  }
 }
