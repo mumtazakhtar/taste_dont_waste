@@ -9,7 +9,7 @@
             <%= text_field_tag :query,
                   params[:query],
                   class: "form-control",
-                  placeholder: "Add more ingredients",
+                  placeholder: "Enter ingredients, with comma",
                   'data-search-recipes-target': "form"
             %>
 
@@ -45,7 +45,7 @@
         </div>
 
           <%# Cooking time search %>
-          <div class="dietary">
+          <div class="dietary"><BR>
             <h2>Cooking Time</h2>
             <%# NOT USABLE YET %>
             <div class="check">
@@ -57,50 +57,49 @@
               <%= label_tag(:cooking_time_60, "< 60 min") %>
               <%= radio_button_tag(:cooking_time, "1000") %>
               <%= label_tag(:cooking_time_all, "Show all") %>
-              <BR>
+              <BR><BR>
               <%= submit_tag "Filter Search" %>
             </div>
           </div>
         </form>
 
-
-
       </div>
 
       <%# Dietary search %><BR>
-
       <div class ="dietary">
         <h2>Dietary restrictions</h2>
         <div class="check">
           <div class="box"><input type="checkbox" id="vegan" name="vegan" value="Dietary">
-          <label for="vegan"> Vegan</label></div>
+            <label for="vegan"> Vegan</label></div>
           <div class="box"><input type="checkbox" id="vegetarian" name="vegetarian" value="Dietary">
-          <label for="vegetarian"> Vegetarian</label></div>
+            <label for="vegetarian"> Vegetarian</label></div>
           <div class="box"><input type="checkbox" id="gluten-free" name="gluten-free" value="Dietary">
-          <label for="gluten-free"> Gluten free</label></div>
+            <label for="gluten-free"> Gluten free</label></div>
           <div class="box"><input type="checkbox" id="lactose-free" name="lactose-free" value="Dietary">
-          <label for="lactose-free"> Lactose free</label></div>
+            <label for="lactose-free"> Lactose free</label></div>
         </div>
       </div>
 
 
       <%# Pantry items / Inventory %><BR>
       <div class="your-list">
-      <% if @items.present? %>
-        <h2>Your pantry items</h2>
-          <div class="items">
-            <% @items.each do |item| %>
-              <div class="ingr">
-                <%= item.product %> (Stock: <%= item.stock %>)<BR>
-              </div>
-            <% end %>
+        <% if @items.present? %>
+          <h2>Your pantry items</h2>
+            <div class="items">
+              <% @items.each do |item| %>
+                <div class="ingr">
+                  <%= item.product %> (Stock: <%= item.stock %>)<BR>
+                </div>
+              <% end %>
+            </div>
         <% else %>
             <p>You currently have no items added on your list</p>
             <p><strong>Click here</strong> to go to list</p>
-          <% end %>
-          </div>
+        <% end %>
       </div>
     </div>
+
+  <%# </div> %>
 
   <%# Recipe Results page %>
   <% if @recipes.empty? %>

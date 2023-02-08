@@ -9,16 +9,31 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
-
     @search_ingredients = params[:query]
 
+    # if params[:query] && params[:cooking_time]
+    #   @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
+    #   @recipes = Recipe.search_by_everything(params[:query]).where("cooking_time <= ?", params[:cooking_time].to_i) if params[:query] && params[:cooking_time]
+    # end
+
+    # :next_five_tasks, ->(user) { where(user_id: user.id).where("due_date > ?", Date.today).where("category != ?", "Complete").order(:due_date).limit(5)}scope :next_five_tasks, ->(user) { where(user_id: user.id).where("due_date > ?", Date.today).where("category != ?", "Complete").order(:due_date).limit(5)}
+
     if params[:query] || params[:cooking_time]
-      # params[:cooking_time].to_i
-      @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
-      @recipes = Recipe.search_by_everything(params[:query]).where("cooking_time <= ?", params[:cooking_time].to_i) if params[:query] && params[:cooking_time]
-      @recipes = Recipe.search_by_everything(params[:query]) if params[:query] # your pg_scope
-      @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time].to_i) if params[:cooking_time]
+      params[:cooking_time].to_i
+      if params[:query] && params[:cooking_time]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients like ?", "%#{params[:query]}%")
+      elsif params[:query]
+        @recipes = Recipe.where("ingredients like ?", "%#{params[:query]}%")
+      elsif params[:cooking_time]
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time])
+      else
+        @recipes = Recipe.all
+      end
+      # @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
+      # @recipes = Recipe.search_by_everything(params[:query]) if params[:query] # your pg_scope
     end
+
+    # raise
 
     # @recipes = @recipes.ingredients_search(params[:query]) if params[:query].present?
     # @recipes = @recipes.ingredients_search(params[:cooking_time]) if params[:cooking_time].present?
