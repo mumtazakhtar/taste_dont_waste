@@ -11,13 +11,14 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     @search_ingredients = params[:query]
 
-    # Should seach ingredients AND title? Also search 'like' and prefix etc?
     if params[:query] || params[:cooking_time]
       params[:cooking_time].to_i
       if params[:query] && params[:cooking_time]
-        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients like ?", "%#{params[:query]}%")
+        @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).search_by_everything(params[:query])
+        # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients like ?", "%#{params[:query]}%")
       elsif params[:query]
-        @recipes = Recipe.where("ingredients like ?", "%#{params[:query]}%")
+        # @recipes = Recipe.where("ingredients like ?", "%#{params[:query]}%")
+        @recipes = Recipe.search_by_everything(params[:query])
       elsif params[:cooking_time]
         @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time])
       else
@@ -25,6 +26,7 @@ class RecipesController < ApplicationController
       end
     end
 
+    # BIG MESS! TO BE CLEANED UP IN FINAL VERSION BUT PLEASE LEAVE HERE FOR NOW
       # @recipes = Recipe.joins(:ingredients, :cooking_time) # the columns to filter
       # @recipes = Recipe.search_by_everything(params[:query]) if params[:query] # your pg_scope
 
@@ -33,18 +35,11 @@ class RecipesController < ApplicationController
     #   @recipes = Recipe.search_by_everything(params[:query]).where("cooking_time <= ?", params[:cooking_time].to_i) if params[:query] && params[:cooking_time]
     # end
 
-    # :next_five_tasks, ->(user) { where(user_id: user.id).where("due_date > ?", Date.today).where("category != ?", "Complete").order(:due_date).limit(5)}scope :next_five_tasks, ->(user) { where(user_id: user.id).where("due_date > ?", Date.today).where("category != ?", "Complete").order(:due_date).limit(5)}
 
     # @recipes = @recipes.ingredients_search(params[:query]) if params[:query].present?
     # @recipes = @recipes.ingredients_search(params[:cooking_time]) if params[:cooking_time].present?
     # @recipes = @recipes.global_search(params[:query]) if params[:query] && params[:cooking_time].present?
 
-        #     case params[:cooking_time]
-    #     when "30" then @time_recipes << Recipe.short_time
-    #     when "45" then @time_recipes << Recipe.medium_time
-    #     when "60" then @time_recipes << Recipe.long_time
-    #     when "120" then @time_recipes << Recipe.longest_time
-    #     end
 
     # @name_recipes = []
     # @time_recipes = []

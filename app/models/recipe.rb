@@ -3,10 +3,12 @@ class Recipe < ApplicationRecord
   acts_as_favoritable
   validates :title, :ingredients, :description, :cooking_time, presence: true
 
-  scope :short_time, -> { where("cooking_time < 31") }
-  scope :medium_time, -> { where("cooking_time < 46") }
-  scope :long_time, -> { where("cooking_time < 61") }
-  scope :longest_time, -> { where("cooking_time > 0") }
+  # TO BE REMOVED IN FINAL VERSION (PLEASE LEAVE IN FOR NOW)
+  # scope :next_five_tasks, ->(user) { where(user_id: user.id).where("due_date > ?", Date.today).where("category != ?", "Complete").order(:due_date).limit(5)}
+  # scope :short_time, -> { where("cooking_time < 31") }
+  # scope :medium_time, -> { where("cooking_time < 46") }
+  # scope :long_time, -> { where("cooking_time < 61") }
+  # scope :longest_time, -> { where("cooking_time > 0") }
 
   include PgSearch::Model
 
