@@ -60,25 +60,21 @@
             </div>
           </div>
 
-        <%# Dietary search %><BR>
-        <div class ="dietary">
-          <h2>Dietary restrictions</h2>
-          <div class="check">
-          <div class="box"><%= check_box_tag(:diets, "vegan") %>Vegan</div>
-          <div class="box"><%= check_box_tag(:diets, "vegeterian") %>Vegetarian</div>
-          <div class="box"><%= check_box_tag(:diets, "gluten free") %>Glutenfree</div>
-          <div class="box"><%= check_box_tag(:diets, "low fodmap") %>Low FODMAP</div>
-          <BR>
-          <%= submit_tag "Filter Search" %>
+          <%# Dietary search %><BR>
+          <div class ="dietary">
+            <h2>Dietary restrictions</h2>
+            <div class="check">
+            <div class="box"><%= check_box_tag(:diets, "vegan") %>Vegan</div>
+            <div class="box"><%= check_box_tag(:diets, "vegetarian") %>Vegetarian</div>
+            <div class="box"><%= check_box_tag(:diets, "gluten free") %>Glutenfree</div>
+            <div class="box"><%= check_box_tag(:diets, "low fodmap") %>Low FODMAP</div>
+            <BR>
+            <%= submit_tag "Filter Search" %>
+            </div>
           </div>
-        </div>
-
-
         </form>
 
       </div>
-
-
 
       <%# Pantry items / Inventory %><BR>
       <div class="your-list">
@@ -92,8 +88,8 @@
               <% end %>
             </div>
         <% else %>
-            <p>You currently have no items in your inventory.</p>
-            <p><strong>Click here</strong> to go to list</p>
+            <p>You currently have no items in your inventory.
+            <strong><%= link_to "Add items", cookbook_path %></strong> to your inventory</p>
         <% end %>
       </div>
     </div>
