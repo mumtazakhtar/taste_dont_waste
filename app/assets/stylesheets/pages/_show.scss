@@ -36,12 +36,13 @@
     margin-top: 1rem;
     font-family: $h1-font;
     font-size: 35px;
+    color: $eggplant;
   }
 }
 
 .card-list {
   position: sticky;
-  top: 40px;
+  top: 50px;
   border: 1px solid rgb(213, 225, 213);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding-right: 12px;
@@ -49,7 +50,7 @@
   margin-left: 0px;
   padding-top: 10px;
   overflow-y: scroll;
-  max-height: 80vh;
+  max-height: 100vh;
 
   .prep-time {
     font-size: 12px;
@@ -87,7 +88,7 @@
 
   img {
     border-radius: 4px;
-  } 
+  }
 
   h1 {
     display: flex;
