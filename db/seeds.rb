@@ -91,7 +91,6 @@ require 'openssl'
 Item.destroy_all
 MyRecipe.destroy_all
 User.destroy_all
-Recipe.destroy_all
 
 puts "Start creating recipes..."
 recipe_tags = ["", "vegan", "gluten free", "breakfast", "lunch", "soup", "salad", "italian", "French", "German", "Indian"]
