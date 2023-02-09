@@ -98,9 +98,13 @@
             <div class="items">
               <% @items.each do |item| %>
                 <div class="ingr">
-                  <%= item.product %> (Stock: <%= item.stock %>)<BR>
+                  <% if item.days < 2 %>
+                  <p class="text-danger" title="This item is near or over its best before date!"><%= item.product %> (Stock: <%= item.stock %>)</p>
+                  <% else %>
+                <p><%= item.product %> (Stock: <%= item.stock %>)</p>
+                  <% end %>
                 </div>
-              <% end %><BR>
+              <% end %>
               <strong><%= link_to "Add more items", cookbook_path %></strong><BR> to your inventory.
             </div>
         <% else %>
