@@ -111,9 +111,17 @@
                   <th>Delete</th>
                 </tr>
                   <% @items.each do |item| %>
-                <tr>
+                    <% if item.days < 1 %>
+                      <tr class="tr-red" title="This item is past its best by date! Visibly inspect and smell your product before deciding if it is safe to eat.">
+                    <% elsif item.days < 4 %>
+                      <tr class="tr-lightred" title="This item is nearing its best by date!">
+                    <% else %>
+                      <tr>
+                    <% end %>
+
                   <td><button type="button" class="btn-nrm" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>">
-                  <%= item.product %>
+                  <strong><%= item.product %></strong>
+
                   </button></td>
                     <td><%= item.bestByDate.strftime("%d/%m/%Y") %></td>
                     <td><%= item.days %></td>

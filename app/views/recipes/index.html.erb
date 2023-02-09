@@ -157,7 +157,8 @@
                 <% end %>
 
               <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
-                <p class="fifty-chars"><strong>Ingredients:</strong> <BR>
+                <p><strong>Ingredients:</strong> <BR>
+
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
                 <% @ingredients.uniq.each do |ingredient| %>
