@@ -45,7 +45,7 @@
 
           <%# Cooking time search %>
           <div class="dietary"><BR>
-            <h2>Cooking Time</h2>
+            <h2>Cooking time</h2>
             <div class="check">
               <%= radio_button_tag(:cooking_time, "1000", params[:cooking_time] == '1000') %>
               <%= label_tag(:cooking_time_all, "All") %>
@@ -75,7 +75,7 @@
 
           <%# Dietary restrictions %>
           <div class="dietary"><BR>
-            <h2>Dietery restrictions</h2>
+            <h2>Dietary restrictions</h2>
             <div class="check">
               <%# I undid class = box for now (broke search? will try again) %>
               <%# Use checkboxes or radiobuttons ? %>
@@ -105,7 +105,7 @@
 
       <%# Pantry items / Inventory %><BR>
       <div class="your-list">
-      <h2>Your pantry items</h2>
+      <h2>Inventory items</h2>
         <% if @items.present? %>
             <div class="items">
               <% @items.each do |item| %>
