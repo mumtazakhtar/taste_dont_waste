@@ -11,11 +11,12 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="search-recipes"
 export default class extends Controller {
 
-  static targets = [ "form", "ingredients", "ingredient", "ingredientlist", "array" ]
+  static targets = [ "form", "ingredients", "ingredient", "ingredientlist", "array"]
   static values = ["ingredient"]
 
   connect() {
   }
+
 
   removeIngredient(event) {
     // console.log(event.target.innerText);
@@ -24,6 +25,8 @@ export default class extends Controller {
     // console.log(this.ingredientlistTargets[0].dataset.ingredient)
 
     const oldURI = [this.formTarget.baseURI.toLocaleLowerCase()]
+    // console.log(oldURI)
+
     if (this.ingredientlistTargets.length === 1 ) {
       var newUri = `${oldURI}`.replace(`${thisIngredient}`, '');
       console.log("only one")

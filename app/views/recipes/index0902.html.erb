@@ -6,7 +6,6 @@
         <p id="filter">Enter your ingredients, comma seperated</p>
         <form role="search">
           <div id="form">
-          <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
             <%= text_field_tag :query,
                   params[:query],
                   class: "form-control",
@@ -47,31 +46,16 @@
           <div class="dietary"><BR>
             <h2>Cooking Time</h2>
             <div class="check">
-              <%= radio_button_tag(:cooking_time, "1000", params[:cooking_time] == '1000') %>
+              <%= radio_button_tag(:cooking_time, "1000", true) %>
               <%= label_tag(:cooking_time_all, "All") %>
               <%= radio_button_tag(:cooking_time, "30", params[:cooking_time] == '30') %>
-              <%= label_tag(:cooking_time, "<30 min") %>
+              <%= label_tag(:cooking_time_30, "<30 min") %>
               <%= radio_button_tag(:cooking_time, "45", params[:cooking_time] == '45') %>
-              <%= label_tag(:cooking_time, "<45 min") %>
+              <%= label_tag(:cooking_time_30, "<45 min") %>
               <%= radio_button_tag(:cooking_time, "60", params[:cooking_time] == '60') %>
-              <%= label_tag(:cooking_time, "<60 min") %>
+              <%= label_tag(:cooking_time_30, "<60 min") %>
             </div>
           </div>
-
-          <%# Ingredients search %>
-          <%# <div class="dietary"><BR> %>
-            <%# <h2>Number of ingredients</h2> %>
-            <%# <div class="check"> %>
-              <%# <%= radio_button_tag(:ingredients, "100", params[:ingredients] == '100') %>
-              <%# <%= label_tag(:ingredients_all, "All") %>
-              <%# <%= radio_button_tag(:ingredients, "5", params[:ingredients] == '5') %>
-              <%# <%= label_tag(:ingredients, "Max 5") %>
-              <%# <%= radio_button_tag(:ingredients, "10", params[:ingredients] == '10') %>
-              <%# <%= label_tag(:ingredients, "Max 10") %>
-              <%# <%= radio_button_tag(:ingredients, "15", params[:ingredients] == '15') %>
-              <%# <%= label_tag(:ingredients, "Max 15") %>
-            <%# </div> %>
-          <%# </div> %>
 
           <%# Dietary restrictions %>
           <div class="dietary"><BR>
@@ -94,10 +78,8 @@
               </div>
 
           <%= submit_tag "Filter Search" %>
-          <%# This end should close form with url do %>
-          <% end %>
 
-          <%# Code underneath gives the call to action button class I thought, but aligns the button right? %>
+          <%# Code underneath gives the call to action button class, but aligns the button right? %>
           <%# <%= submit_tag "Filter Search", :class => "btn-call" %>
           </div>
           </form>
@@ -142,7 +124,7 @@
                 <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                 <div class="card-recipe card-recipe-quickview" title="Quick view the recipe" data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
-                  <h2><i class="fa-solid fa-expand"></i></h2>
+                  <i class="fa-solid fa-expand"></i>
                 </div>
                 <% if user_signed_in? %>
                    <% if current_user.favorited?(recipe) %>
@@ -171,8 +153,10 @@
                 <p><strong>Ingredients:</strong> <%=  %><BR>
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
-                <% @ingredients.uniq.each do |ingredient| %>
-                  <%= ingredient.capitalize %>,
+                <% @ingredients.each do |ingredient| %>
+                  <% ingredient.uniq.each do |ing|%>
+                      <%= ing.capitalize %>,
+                  <% end %>
                 <% end %>
 
                 <!-- Modal for pop up recipe -->
