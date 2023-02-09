@@ -58,21 +58,6 @@
             </div>
           </div>
 
-          <%# Ingredients search %>
-          <%# <div class="dietary"><BR> %>
-            <%# <h2>Number of ingredients</h2> %>
-            <%# <div class="check"> %>
-              <%# <%= radio_button_tag(:ingredients, "100", params[:ingredients] == '100') %>
-              <%# <%= label_tag(:ingredients_all, "All") %>
-              <%# <%= radio_button_tag(:ingredients, "5", params[:ingredients] == '5') %>
-              <%# <%= label_tag(:ingredients, "Max 5") %>
-              <%# <%= radio_button_tag(:ingredients, "10", params[:ingredients] == '10') %>
-              <%# <%= label_tag(:ingredients, "Max 10") %>
-              <%# <%= radio_button_tag(:ingredients, "15", params[:ingredients] == '15') %>
-              <%# <%= label_tag(:ingredients, "Max 15") %>
-            <%# </div> %>
-          <%# </div> %>
-
           <%# Dietary restrictions %>
           <div class="dietary"><BR>
             <h2>Dietary restrictions</h2>
@@ -80,25 +65,40 @@
               <%# I undid class = box for now (broke search? will try again) %>
               <%# Use checkboxes or radiobuttons ? %>
 
-                <%= check_box_tag(:diets, "vegan", params[:diets] == 'vegan') %>
-                <%= label_tag(:diets_vegan, "Vegan") %><BR>
+                <div class="box"><%= check_box_tag(:diets, "vegan", params[:diets] == 'vegan') %>
+                <%= label_tag(:diets_vegan, "Vegan") %></div>
 
-                <%= check_box_tag(:diets, "vegetarian", params[:diets] == 'vegetarian') %>
-                <%= label_tag(:diets_veggie, "Vegetarian") %><BR>
+                <div class="box"><%= check_box_tag(:diets, "vegetarian", params[:diets] == 'vegetarian') %>
+                <%= label_tag(:diets_veggie, "Vegetarian") %></div>
 
-                <%= check_box_tag(:diets, "gluten free", params[:diets] == 'gluten free') %>
-                <%= label_tag(:diets_glutenfree, "Gluten Free") %><BR>
+                <div class="box"><%= check_box_tag(:diets, "gluten free", params[:diets] == 'gluten free') %>
+                <%= label_tag(:diets_glutenfree, "Gluten Free") %></div>
 
-                <%= check_box_tag(:diets, "low fodmap", params[:diets] == 'low fodmap') %>
-                <%= label_tag(:diets_fodmap, "Low FODMAP") %><BR><BR>
-              </div>
+                <div class="box"><%= check_box_tag(:diets, "low fodmap", params[:diets] == 'low fodmap') %>
+                <%= label_tag(:diets_fodmap, "Low FODMAP") %></div>
+            </div>
 
-          <%= submit_tag "Filter Search" %>
+
+          <%# Ingredients search  %>
+          <div class="dietary"><BR>
+            <h2>Number of ingredients</h2>
+            <div class="check">
+              <%= radio_button_tag(:ingredients, "100", params[:ingredients] == '100') %>
+              <%= label_tag(:ingredients_all, "All") %>
+              <%= radio_button_tag(:ingredients, "5", params[:ingredients] == '5') %>
+              <%= label_tag(:ingredients, "Max 5") %>
+              <%= radio_button_tag(:ingredients, "10", params[:ingredients] == '10') %>
+              <%= label_tag(:ingredients, "Max 10") %>
+              <%= radio_button_tag(:ingredients, "15", params[:ingredients] == '15') %>
+              <%= label_tag(:ingredients, "Max 15") %>
+            </div>
+          </div><BR>
+
+          <%= submit_tag "Filter Search", :class => "btn-call" %>
+
           <%# This end should close form with url do %>
           <% end %>
 
-          <%# Code underneath gives the call to action button class I thought, but aligns the button right? %>
-          <%# <%= submit_tag "Filter Search", :class => "btn-call" %>
           </div>
           </form>
       </div>
@@ -112,7 +112,8 @@
                 <div class="ingr">
                   <%= item.product %> (Stock: <%= item.stock %>)<BR>
                 </div>
-              <% end %>
+              <% end %><BR>
+              <strong><%= link_to "Add more items", cookbook_path %></strong><BR> to your inventory.
             </div>
         <% else %>
             <p>You currently have no items in your inventory.
@@ -161,19 +162,19 @@
               <%# IF USER NOT SIGNED IN, REFER TO SIGN UP PAGE WHEN THEY FAVO %>
                 <% else %>
                   <div class="card-recipe-heart">
-                    <%= link_to new_user_registration_path do %>
+                    <%= link_to new_user_session_path do %>
                       <h2><i class="fa-regular fa-heart"></i></h2>
                     <% end %>
                   </div>
                 <% end %>
 
               <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
-                <p><strong>Ingredients:</strong> <%=  %><BR>
+                <p id="charcount"><strong>Ingredients:</strong> <BR>
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
                 <% @ingredients.uniq.each do |ingredient| %>
                   <%= ingredient.capitalize %>,
-                <% end %>
+                <% end %></p>
 
                 <!-- Modal for pop up recipe -->
                 <div class="modal fade" id="exampleModal<%= recipe.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
