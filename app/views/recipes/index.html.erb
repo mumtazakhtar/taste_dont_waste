@@ -161,9 +161,11 @@
 
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
-                <% @ingredients.uniq.each do |ingredient| %>
-                  <%= ingredient.capitalize %>,
-                <% end %></p>
+                <% ingredients = @ingredients.uniq.each do |ingredient| %>
+                  <% ingredient.capitalize %>
+                <% end %>
+                <%= ingredients.join(', ').truncate(275) %>
+                </p>
 
                 <!-- Modal for pop up recipe -->
                 <div class="modal fade" id="exampleModal<%= recipe.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
