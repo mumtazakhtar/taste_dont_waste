@@ -25,6 +25,7 @@
     <div class="show-recipe">
       <div class= "recipe">
         <h1><%= @recipe.title %></h1>
+        <hr>
           <% if @recipe.photo.key %>
             <%= cl_image_tag @recipe.photo.key, class:"img-fluid" %>
           <% end %>
@@ -51,6 +52,7 @@
             <% end %>
         </div>
         <h2>Instructions</h2>
+        <hr>
         <ol>
           <% @instructions.each do |instruction| %>
             <li><%= instruction %></li>
