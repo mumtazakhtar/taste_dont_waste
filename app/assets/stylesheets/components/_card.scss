@@ -9,16 +9,17 @@
 }
 
 .search-card {
+  position: sticky;
+  margin-top: 5px;
+  top: 70px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  position: -webkit-sticky;
-  position: sticky;
   background: $light-gray;
-  //position: fixed;
-  //top: 0;
-  //z-index: 10;
+  //overflow-y: scroll;
+  //overflow: scroll;
+  max-height: 150vh;
 }
 
 .card-recipe {
