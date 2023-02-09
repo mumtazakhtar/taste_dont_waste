@@ -105,7 +105,7 @@ recipe_tags.each do |recipe_tag|
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
   request = Net::HTTP::Get.new(url)
-  request["X-RapidAPI-Key"] = '2bf2a943e4msh6d516e402eb4809p1d6e53jsnf563ed47577e'
+  request["X-RapidAPI-Key"] = ENV['API_KEY']
   request["X-RapidAPI-Host"] = 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
 
   recipes_data = JSON.parse(http.request(request).read_body)
