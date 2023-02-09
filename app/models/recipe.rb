@@ -10,19 +10,13 @@ class Recipe < ApplicationRecord
   # scope :ingr_time, -> { where("cooking_time <= ?", params[:cooking_time]).where("ingredients ilike ?", "%#{params[:query]}%") }
 
   include PgSearch::Model
-
-  pg_search_scope :search_by_ingredients, against: [:ingredients], using: { tsearch: { prefix: true } }
-  pg_search_scope :search_by_diets, against: [:diets], using: { tsearch: { prefix: true } }
-  pg_search_scope :search_by_ingredients_and_diets, against: [:ingredients, :diets], using: { tsearch: { prefix: true } }
-  pg_search_scope :search_by_cookingtime, against: [:name, :cooking_time], using: { tsearch: { prefix: true } }
-
-  # Search by ingredients and title for homepage and recipes index
-  pg_search_scope :search_by_everything,
-                  against: %i[ingredients title],
-                  using: {
-                    tsearch:
-                    { prefix: true }
-                  }
+    # Search by ingredients and title for homepage and recipes index
+    pg_search_scope :search_by_everything,
+    against: %i[ingredients title],
+    using: {
+      tsearch:
+      { prefix: true }
+    }
 
   # Search by cooking_time for recipes index
   pg_search_scope :search_by_cooking_time,

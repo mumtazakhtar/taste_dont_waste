@@ -6,6 +6,7 @@
         <p id="filter">Enter your ingredients, comma seperated</p>
         <form role="search">
           <div id="form">
+          <%= form_with url: recipes_path, method: :get, class: "d-flex" do %>
             <%= text_field_tag :query,
                   params[:query],
                   class: "form-control",
@@ -46,22 +47,24 @@
           <div class="dietary"><BR>
             <h2>Cooking Time</h2>
             <div class="check">
-              <%= radio_button_tag(:cooking_time, "1000", true) %>
+              <%= radio_button_tag(:cooking_time, "1000", params[:cooking_time] == '1000') %>
               <%= label_tag(:cooking_time_all, "All") %>
               <%= radio_button_tag(:cooking_time, "30", params[:cooking_time] == '30') %>
-              <%= label_tag(:cooking_time_30, "<30 min") %>
+              <%= label_tag(:cooking_time, "<30 min") %>
               <%= radio_button_tag(:cooking_time, "45", params[:cooking_time] == '45') %>
-              <%= label_tag(:cooking_time_30, "<45 min") %>
+              <%= label_tag(:cooking_time, "<45 min") %>
               <%= radio_button_tag(:cooking_time, "60", params[:cooking_time] == '60') %>
-              <%= label_tag(:cooking_time_30, "<60 min") %>
+              <%= label_tag(:cooking_time, "<60 min") %>
             </div>
           </div>
 
-          <%# Radiobuttons dietary restrictions %>
+          <%# Dietary restrictions %>
           <div class="dietary"><BR>
             <h2>Dietery restrictions</h2>
             <div class="check">
               <%# I undid class = box for now (broke search? will try again) %>
+              <%# Use checkboxes or radiobuttons ? %>
+
                 <%= check_box_tag(:diets, "vegan", params[:diets] == 'vegan') %>
                 <%= label_tag(:diets_vegan, "Vegan") %><BR>
 
@@ -76,10 +79,11 @@
               </div>
 
           <%= submit_tag "Filter Search" %>
+          <%# Should close form do tag %>
+          <% end %>
 
-          <%# This gives the call to action button class, but aligns the button right? %>
+          <%# Code underneath gives the call to action button class, but aligns the button right? %>
           <%# <%= submit_tag "Filter Search", :class => "btn-call" %>
-
           </div>
           </form>
       </div>
