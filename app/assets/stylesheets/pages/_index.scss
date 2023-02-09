@@ -189,6 +189,13 @@ a:hover {
   line-height: 1.8;
 }
 
+.fifty-chars {
+  // width: 250ch;
+  // overflow: hidden;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+}
+
 #charcount{
   // max-height: 4ch;
 }
