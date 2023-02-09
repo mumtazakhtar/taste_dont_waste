@@ -121,20 +121,24 @@ recipe_tags.each do |recipe_tag|
         cuisines = recipe_data["cuisines"]
         ingredients = []
         recipe_data["extendedIngredients"].map { |ingredient| ingredients << ingredient["original"] }
-        instructions = []
-        recipe_data["analyzedInstructions"][0]["steps"].map { |instruction| instructions << instruction["step"]}
-        recipe = Recipe.new(
-          title: title,
-          ingredients: ingredients,
-          description: instructions,
-          cooking_time: ready_in_minutes,
-          servings: servings,
-          diets: diets,
-          cuisines: cuisines
-        )
-        recipe.photo.attach(io: image, filename: "#{title}.jpg", content_type: "image/jpg")
-        recipe.save
-        puts "Created recipe: #{title}."
+        if recipe_data["analyzedInstructions"][0]["steps"].nil?
+          puts "Empty instructions.."
+        else
+          instructions = []
+          recipe_data["analyzedInstructions"][0]["steps"].map { |instruction| instructions << instruction["step"]}
+          recipe = Recipe.new(
+            title: title,
+            ingredients: ingredients,
+            description: instructions,
+            cooking_time: ready_in_minutes,
+            servings: servings,
+            diets: diets,
+            cuisines: cuisines
+          )
+          recipe.photo.attach(io: image, filename: "#{title}.jpg", content_type: "image/jpg")
+          recipe.save
+          puts "Created recipe: #{title}."
+        end
       else
         puts "Servings cuisines diets are not present"
       end
