@@ -1,6 +1,7 @@
 .btn-call {
   border: 1px solid $eggplant;
   padding: 8px 24px;
+  max-width: 100%;
   box-shadow: 0px 0px 12px -2px rgba(53, 255, 3, 0.5);
   //background: linear-gradient(to right, #7e2966, $eggplant, #7e2966);
   background-color: $eggplant;
@@ -17,17 +18,17 @@
 }
 
 .btn-nrm {
-  color: $courgette;
+  color: $salad;
   border: 1px solid $salad;
   padding: 8px 24px;
   border-radius: 50px;
   font-weight: lighter;
   opacity: 0.6;
+  max-width: 100%;
   transition: opacity 0.3s ease;
   text-decoration: none;
   margin-bottom: 8px;
   max-height: 45px;
-  //max-width: 100%;
 }
 
 .btn-nrm:hover {

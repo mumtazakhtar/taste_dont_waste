@@ -34,3 +34,16 @@
 .footer .footer-copyright {
   opacity: 0.50;
 }
+
+
+@media screen and (max-width: 884px) {
+  .footer {
+    bottom: -88px;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .footer {
+    bottom: -50px;
+  }
+}

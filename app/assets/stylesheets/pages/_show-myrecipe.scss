@@ -5,20 +5,122 @@
 .show_my_recipe {
   margin-top: 38px;
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  flex-grow: 2;
+  grid-template-columns: 1fr 2fr;
+  flex-grow: 1;
   padding-left: 28px;
   column-gap: 40px;
+  margin-left: 20px;
+  margin-right: 200px;
+
   img {
     border-radius: 4px;
   }
-}
+  h2 {
+    text-align: center;
+    font-family: $h2-font;
+    font-size: 20px;
+    color: $squash;
+    background-color: $logo;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(66, 114, 3, 0.764);
+  }
+
+  p {
+    text-align: center;
+    color: $eggplant;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
 .recipe_info {
-  h2{
-    color: $courgette;
+  //margin-right: 100px;
+  display: inline;
+  //align-items: center;
+  margin-top: 20px;
+
+  h1{
+    font-family: $h1-font;
+    font-size: 40px;
+    color: $eggplant;
     padding: 8px;
+    text-align: center;
+    }
+
+  .my-button {
+    display: flex;
+    margin-left: 20px;
+    justify-content: center;
+    }
+
   }
 }
 .instruction {
   margin-bottom: 80px;
+}
+
+
+@media screen and (max-width: 884px) {
+  .show_my_recipe {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-right: 20px;
+
+    .recipe_info {
+      padding-right: 5px;
+
+      .my-button {
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        div {
+          margin-bottom: 25px;
+        }
+        .btn-call {
+          //margin-left: 100px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .show_my_recipe {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 1px;
+    padding-right: 1px;
+
+    img {
+      max-height: 50%;
+      max-width: 100%;
+    }
+
+    .recipe_info {
+      padding-right: 5px;
+
+      .my-button {
+        display: inline-block;
+        justify-items: stretch;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        div {
+          margin-bottom: 25px;
+        }
+        .btn-nrm {
+          margin-left: 100px;
+        }
+      }
+    }
+
+    p {
+      padding-right: 5px;
+    }
+
+
+  }
 }

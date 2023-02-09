@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@my_recipe.title} | Taste, don't waste" %>
+<% content_for :meta_description, @my_recipe.description %>
+<% content_for :meta_image, cl_image_path(@my_recipe.photo.key) if @my_recipe.photo.attached? %>
+
 <div class= "container_my_recipe">
   <div class="show_my_recipe">
     <div class="my_recipe">
@@ -10,18 +14,21 @@
       </div>
     </div>
     <div class= "recipe_info">
-      <h2><%= @my_recipe.title %></h2>
+      <h1><%= @my_recipe.title %></h1>
       <hr>
       <div>
-        <h3>Ingredients</h2>
+        <h2>Ingredients</h2>
         <p><%= @my_recipe.ingredients %></p>
       </div>
       <div class="instruction">
-        <h3>Instructions</h2>
+        <h2>Instructions</h2>
         <p><%= @my_recipe.description %></p>
       </div>
-      <%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn-back" %>
-      <%= link_to "Back to your cookbook", cookbook_path, class:"btn-back" %>
+      <div class="my-button">
+        <div><%= link_to "Edit this recipe", edit_my_recipe_path, class:"btn-nrm" %></div>
+        <div><%= link_to "Back to cookbook", cookbook_path, class:"btn-nrm" %></div>
+        <div><%= link_to "Back to recipes", recipes_path, class: "btn-nrm" %></div>
+      </div>
     </div>
   </div>
 </div>

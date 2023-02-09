@@ -127,6 +127,8 @@
 
   .card_list {
     width: 40vw;
+    border: none;
+    box-shadow: none;
   }
 }
 
@@ -135,6 +137,8 @@
     margin-top: 40px;
   }
   .show {
+    display: grid;
+    grid-template-columns: 1fr;
     column-gap: 5px;
     margin-top: 5px;
   }
@@ -142,15 +146,41 @@
   .show-recipe {
     margin-left: 5px;
     margin-right: 5px;
+    position: sticky;
+    z-index: 10px;
+    background-color: $light-gray;
+    display: grid;
+    align-items: center;
 
     h1 {
       font-size: 20px;
+      text-align: center;
+    }
+
+    .recipe {
+      position: sticky;
+      z-index: 30px;
+    }
+
+    div {
+      margin-top: 20px;
+
+      .btn-nrm {
+        text-align: center;
+      }
     }
   }
 
   .card_list {
     width: 30vw;
     margin-left: 0px;
+    position: inherit;
+    overflow: hidden;
+
+    .list_ingredients {
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
 
     h2 {
       font-size: 18px;
@@ -160,5 +190,4 @@
       font-size: 15px;
     }
   }
-
 }
