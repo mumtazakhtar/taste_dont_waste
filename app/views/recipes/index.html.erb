@@ -138,7 +138,7 @@
             <%= image_tag "logo.png", height: 300, width: 400, crop: :fill %>
           <% end %>
 
-              <div class="card-recipe-infos pt-2 px-3">
+              <div class="card-recipe-infos pt-2 px-3 pb-5">
                 <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                 <%# CHECKS IF USER IS SIGNED IN + FAVO / UNFAVO OPTION %>
                 <div class="card-recipe card-recipe-quickview" title="Quick view the recipe" data-bs-toggle="modal" data-bs-target="#exampleModal<%= recipe.id %>">
