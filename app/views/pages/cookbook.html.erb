@@ -6,7 +6,7 @@
   <div class="divbtn">
     <%= link_to "Create your own recipe", new_my_recipe_path, class:"btn-call" %>
     <%= link_to "Add an item to the inventory list", new_item_path, class:"btn-call" %>
-    <%= link_to "Back to the search page", root_path, class:"btn-call" %>
+    <%= link_to "Back to the search page", recipes_path, class:"btn-call" %>
   </div>
 
     <div class="container-cookbook">
@@ -51,7 +51,7 @@
                       <% @ingredients.uniq.each do |ingredient| %>
                         <%= ingredient.capitalize %>,
                       <% end %>
-                  <% end %>
+
                 </div>
               </div>
             <% end %>
@@ -156,6 +156,6 @@
     </div>
 
     <div class="hide-btn">
-      <%= link_to "Back to the search page", root_path, class:"btn-nrm" %>
+      <%= link_to "Back to the search page", recipes_path, class:"btn-nrm" %>
     </div>
 </div>
