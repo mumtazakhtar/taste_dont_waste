@@ -94,12 +94,12 @@ User.destroy_all
 Recipe.destroy_all
 
 puts "Start creating recipes..."
-recipe_tags = ["dinner"]
+recipe_tags = ["", "vegan", "gluten free", "breakfast", "lunch", "soup", "salad", "italian", "French", "German", "Indian"]
 used_ids = []
 # Define the URL for accessing the Spoonacular API
 recipe_tags.each do |recipe_tag|
   puts "Requesting #{recipe_tag}"
-  url = URI("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=#{recipe_tag}&number=5")
+  url = URI("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=#{recipe_tag}&number=20")
   http = Net::HTTP.new(url.host, url.port)
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -121,11 +121,11 @@ recipe_tags.each do |recipe_tag|
         cuisines = recipe_data["cuisines"]
         ingredients = []
         recipe_data["extendedIngredients"].map { |ingredient| ingredients << ingredient["original"] }
-        if recipe_data["analyzedInstructions"][0]["steps"].nil?
+        if recipe_data["analyzedInstructions"][0]["steps"] == nil
           puts "Empty instructions.."
         else
           instructions = []
-          recipe_data["analyzedInstructions"][0]["steps"].map { |instruction| instructions << instruction["step"]}
+          recipe_data["analyzedInstructions"][0]["steps"].map { |instruction| instructions << instruction["step"] }
           recipe = Recipe.new(
             title: title,
             ingredients: ingredients,
