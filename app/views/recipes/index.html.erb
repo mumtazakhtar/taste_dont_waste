@@ -58,6 +58,21 @@
             </div>
           </div>
 
+          <%# Ingredients search %>
+          <%# <div class="dietary"><BR> %>
+            <%# <h2>Number of ingredients</h2> %>
+            <%# <div class="check"> %>
+              <%# <%= radio_button_tag(:ingredients, "100", params[:ingredients] == '100') %>
+              <%# <%= label_tag(:ingredients_all, "All") %>
+              <%# <%= radio_button_tag(:ingredients, "5", params[:ingredients] == '5') %>
+              <%# <%= label_tag(:ingredients, "Max 5") %>
+              <%# <%= radio_button_tag(:ingredients, "10", params[:ingredients] == '10') %>
+              <%# <%= label_tag(:ingredients, "Max 10") %>
+              <%# <%= radio_button_tag(:ingredients, "15", params[:ingredients] == '15') %>
+              <%# <%= label_tag(:ingredients, "Max 15") %>
+            <%# </div> %>
+          <%# </div> %>
+
           <%# Dietary restrictions %>
           <div class="dietary"><BR>
             <h2>Dietery restrictions</h2>
@@ -79,10 +94,10 @@
               </div>
 
           <%= submit_tag "Filter Search" %>
-          <%# Should close form do tag %>
+          <%# This end should close form with url do %>
           <% end %>
 
-          <%# Code underneath gives the call to action button class, but aligns the button right? %>
+          <%# Code underneath gives the call to action button class I thought, but aligns the button right? %>
           <%# <%= submit_tag "Filter Search", :class => "btn-call" %>
           </div>
           </form>

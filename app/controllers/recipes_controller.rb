@@ -11,14 +11,10 @@ class RecipesController < ApplicationController
     @search_ingredients = params[:query]
     @recipes = Recipe.all
 
-    # Possible refactoring try for later
-    # @recipes2 = Recipe.joins(:recipes_ingredients, :cooking_time, :diets, :id)
-    # @recipes = Recipe.where("ingredients ilike ?", "%#{params[:query]}%") if params[:query].present?
-    # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]) if params[:cooking_time].present?
-    # @recipes = Recipe.where("diets like ?", "%#{params[:diets]}%") if params[:diets].present?
-
+    # For after search is empties (after deselecting ingredients etc)
     if params[:query].blank?
       @recipes = Recipe.all
+
     # For search function for ingredients and cooking time
     elsif params[:query] || params[:cooking_time] || params[:diets]
       params[:cooking_time].to_i
@@ -30,11 +26,9 @@ class RecipesController < ApplicationController
           OR recipes.title @@ :query
         SQL
         @recipes = Recipe.where(sql_query, query: "%#{params[:query]}%").where("cooking_time <= ?", params[:cooking_time]).where("diets ILIKE ?", "%#{params[:diets]}%")
-        # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ILIKE ?", "%#{params[:query]}%")
 
       # If two (ingredients and cooking time) are present
       elsif params[:query] && params[:cooking_time]
-        # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ILIKE ?", "%#{params[:query]}%")
         sql_query = <<~SQL
           recipes.ingredients @@ :query
           OR recipes.title @@ :query
@@ -48,7 +42,6 @@ class RecipesController < ApplicationController
           OR recipes.title @@ :query
         SQL
         @recipes = Recipe.where(sql_query, query: "%#{params[:query]}%").where("diets ILIKE ?", "%#{params[:diets]}%")
-        # @recipes = Recipe.where("diets ILIKE ?", "%#{params[:diets]}%").where("ingredients ILIKE ?", "%#{params[:query]}%")
 
       # if two (cooking time and diet) are present
       elsif params[:diets] && params[:cooking_time]
@@ -58,8 +51,8 @@ class RecipesController < ApplicationController
       elsif params[:query]
         # @recipes = @recipes.where("ingredients ILIKE ?", "%#{params[:query]}%")
         sql_query = <<~SQL
-        recipes.ingredients @@ :query
-        OR recipes.title @@ :query
+          recipes.ingredients @@ :query
+          OR recipes.title @@ :query
         SQL
         @recipes = Recipe.where(sql_query, query: "%#{params[:query]}%")
 
@@ -70,9 +63,22 @@ class RecipesController < ApplicationController
       # if only diet is present
       elsif params[:diets]
         @recipes = Recipe.where("diets ILIKE ?", "%#{params[:diets]}%")
+      # tryout for number of ingredients
+        # elsif params[:ingredients]
+        #   @recipes = Recipe.where("#{ingredients.count} <= ?", params[:ingredients].to_i)
       else
         @recipes = Recipe.all
       end
+
+      # Possible refactoring try for later
+      # @recipes2 = Recipe.joins(:recipes_ingredients, :cooking_time, :diets, :id)
+      # @recipes = Recipe.where("ingredients ilike ?", "%#{params[:query]}%") if params[:query].present?
+      # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]) if params[:cooking_time].present?
+      # @recipes = Recipe.where("diets like ?", "%#{params[:diets]}%") if params[:diets].present?
+
+      # Please leave this in
+      # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ILIKE ?", "%#{params[:query]}%")
+      # @recipes = Recipe.where("cooking_time <= ?", params[:cooking_time]).where("ingredients ILIKE ?", "%#{params[:query]}%")
 
     end
 
