@@ -65,9 +65,6 @@
             <h2>Dietary restrictions</h2>
             <hr>
             <div class="check">
-              <%# I undid class = box for now (broke search? will try again) %>
-              <%# Use checkboxes or radiobuttons ? %>
-
                 <div class="box"><%= check_box_tag(:diets, "vegan", params[:diets] == 'vegan') %>
                 <%= label_tag(:diets_vegan, "Vegan") %></div>
 
@@ -77,10 +74,10 @@
                 <div class="box"><%= check_box_tag(:diets, "gluten free", params[:diets] == 'gluten free') %>
                 <%= label_tag(:diets_glutenfree, "Gluten Free") %></div>
 
-                <div class="box"><%= check_box_tag(:diets, "low fodmap", params[:diets] == 'low fodmap') %>
-                <%= label_tag(:diets_fodmap, "Low FODMAP") %></div>
+                <div class="box"><%= check_box_tag(:diets, "dairy free", params[:diets] == 'dairy free') %>
+                <%= label_tag(:diets_dairyfree, "Dairy Free") %></div>
             </div>
-<BR>
+          <BR>
           <%= submit_tag "Filter Search", :class => "btn-call" %>
 
           <%# This end should close form with url do %>
@@ -98,7 +95,11 @@
             <div class="items">
               <% @items.each do |item| %>
                 <div class="ingr">
-                  <%= item.product %> (Stock: <%= item.stock %>)<BR>
+                  <% if item.days < 2 %>
+                  <span title="Item is near or over its best before date: <%= item.bestByDate.strftime("%d/%m/%Y") %>" class="ingr-warning"><%= item.product %> (Stock: <%= item.stock %>)</span>
+                  <% else %>
+                <%= item.product %> (Stock: <%= item.stock %>)
+                  <% end %>
                 </div>
               <% end %><BR>
               <strong><%= link_to "Add more items", cookbook_path %></strong><BR> to your inventory.
@@ -161,9 +162,11 @@
 
                 <% @ingredients = JSON.parse(recipe.ingredients) %>
 
-                <% @ingredients.uniq.each do |ingredient| %>
-                  <%= ingredient.capitalize %>,
-                <% end %></p>
+                <% ingredients = @ingredients.uniq.each do |ingredient| %>
+                  <% ingredient.capitalize %>
+                <% end %>
+                <%= ingredients.join(', ').truncate(275) %>
+                </p>
 
                 <!-- Modal for pop up recipe -->
                 <div class="modal fade" id="exampleModal<%= recipe.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

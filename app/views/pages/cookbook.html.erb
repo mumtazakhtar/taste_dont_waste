@@ -51,10 +51,10 @@
                       <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
                       <p><strong>Ingredients:</strong> <%=  %><BR>
                       <% @ingredients = JSON.parse(recipe.ingredients) %>
-                      <% @ingredients.uniq.each do |ingredient| %>
-                        <%= ingredient.capitalize %>,
+                      <% ingredients = @ingredients.uniq.each do |ingredient| %>
+                        <% ingredient.capitalize %>
                       <% end %>
-
+                      <%= ingredients.join(', ').truncate(275) %>
                 </div>
               </div>
             <% end %>
