@@ -54,7 +54,7 @@
                       <% ingredients = @ingredients.uniq.each do |ingredient| %>
                         <% ingredient.capitalize %>
                       <% end %>
-                      <%= ingredients.join(', ').truncate(275) %>
+                      <%= ingredients.join(', ').truncate(200) %>
                 </div>
               </div>
             <% end %>
@@ -86,7 +86,7 @@
                         <div class="card-recipe-infos pt-2 px-3">
                         <h2><i class="fa-regular fa-clock"> <%= recipe.cooking_time %></i> min</h2>
                           <h2><%=link_to recipe.title, my_recipe_path(recipe) %></h2>
-                          <p><strong>Ingredients:</strong> <%= recipe.ingredients %><BR>
+                          <p><strong>Ingredients:</strong> <%= recipe.ingredients.truncate(250) %><BR>
                           <%= link_to my_recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this recipe?"} do %>
                           <i class="fa-regular fa-trash-can card-recipe-trash"></i>
                         <% end %>
