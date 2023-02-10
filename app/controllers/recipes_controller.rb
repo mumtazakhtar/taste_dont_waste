@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
       end
     end
 
-    @items = policy_scope(Item)
+    @items = policy_scope(Item).order(bestByDate: :asc)
   end
 
   def show
